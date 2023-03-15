@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class LogIn_Screen extends StatelessWidget{
+class LoginScreen extends StatelessWidget{
   var student_Code = TextEditingController();
   var pass_Code = TextEditingController();
   @override
@@ -10,12 +10,6 @@ class LogIn_Screen extends StatelessWidget{
       appBar: AppBar(
         backgroundColor: Colors.black87,
         centerTitle: true,
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.menu,
-          ),
-        ),
         title: const Text(
           'Account Login',
           style: TextStyle(
