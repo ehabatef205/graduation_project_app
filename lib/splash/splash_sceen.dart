@@ -14,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 5), () {
+    Timer(Duration(seconds: 3), () {
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -41,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
             const Text(
               'Faculty of Science Cairo University',
               style: TextStyle(
-                fontSize: 25.0,
+                fontSize: 20.0,
                 fontWeight: FontWeight.bold,
               ),
             ),

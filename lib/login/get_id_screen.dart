@@ -1,15 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget{
+class GetIdScreen extends StatefulWidget {
+  const GetIdScreen({Key? key}) : super(key: key);
+
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<GetIdScreen> createState() => _GetIdScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  var student_Code = TextEditingController();
-  var pass_Code = TextEditingController();
-  bool isPassword = true;
+class _GetIdScreenState extends State<GetIdScreen> {
+  var national_ID = TextEditingController();
+  var high_School_Degree = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
         backgroundColor: Colors.black87,
         centerTitle: true,
         title: const Text(
-          'Account Login',
+          'Get ID',
           style: TextStyle(
             fontSize: 30.0,
             fontWeight: FontWeight.bold,
@@ -27,14 +27,11 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Padding(
         padding: const EdgeInsets.all(25.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(
-              height: 50.0,
-            ),
-            //Student Code
             TextFormField(
-              controller: student_Code,
+              controller: national_ID,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
@@ -55,21 +52,19 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   borderRadius: BorderRadius.circular(25.0),
                 ),
-                labelText: 'Student Code',
+                labelText: 'National ID',
                 border: OutlineInputBorder(),
                 prefixIcon: Icon(
-                  Icons.account_box,
+                  Icons.account_box_outlined,
                 ),
               ),
             ),
             const SizedBox(
               height: 20.0,
             ),
-            //Pass Code
             TextFormField(
-              controller: pass_Code,
-              keyboardType: TextInputType.visiblePassword,
-              obscureText: isPassword,
+              controller: high_School_Degree,
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(25.0),
@@ -89,27 +84,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   borderRadius: BorderRadius.circular(25.0),
                 ),
-                labelText: 'Pass Code',
+                labelText: 'High School Degree',
                 border: OutlineInputBorder(),
                 prefixIcon: Icon(
-                  Icons.lock,
-                ),
-                suffixIcon: IconButton(
-                  icon: Icon(
-                    isPassword ? Icons.visibility : Icons.visibility_off,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      isPassword = !isPassword;
-                    });
-                  },
+                  Icons.account_box_outlined,
                 ),
               ),
             ),
             const SizedBox(
-              height: 30.0,
+              height: 20.0,
             ),
-            //LogIn
             Container(
               width: double.infinity,
               clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -118,13 +102,13 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               child: MaterialButton(
                 onPressed: () {
-                  print(student_Code.text);
-                  print(pass_Code.text);
+                  print(national_ID.text);
+                  print(high_School_Degree.text);
                 },
                 color: Colors.black87,
                 height: 50.0,
                 child: const Text(
-                  'LogIn',
+                  'Get ID',
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
