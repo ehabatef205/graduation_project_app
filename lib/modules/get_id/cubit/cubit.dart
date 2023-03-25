@@ -9,5 +9,12 @@ class GetIdCubit extends Cubit<GetIdStates> {
 
   TextEditingController nationalIdController = TextEditingController();
   TextEditingController highSchoolDegreeController = TextEditingController();
+  TextEditingController changePassword = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  bool isPressed = false;
+
+  void onPressed(){
+    isPressed = !isPressed;
+    emit(ChangePressedState());
+  }
 }
