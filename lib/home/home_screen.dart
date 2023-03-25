@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project_app/home/departments.dart';
 import 'package:graduation_project_app/login/get_id_screen.dart';
 import 'package:graduation_project_app/login/login_screen.dart';
 
@@ -96,9 +97,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: TextStyle(fontSize: 18),
                   ),
                   onTap: () {
-                    setState(() {
-
-                    });
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CollegeDepartments(
+                            image: "assets/logo.png",
+                            description: "safasfaas",
+                            titleAppbar: "Computer Science Department",
+                          ),
+                      ),
+                    );
                   },
                 ),
                 ListTile(
@@ -108,9 +116,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: TextStyle(fontSize: 18),
                   ),
                   onTap: () {
-                    setState(() {
-
-                    });
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CollegeDepartments(
+                            image: "assets/logo.png",
+                            description: "safasfaas",
+                            titleAppbar: "Computer Science Department",
+                          ),
+                      ),
+                    );
                   },
                 ),
                 ListTile(
@@ -120,9 +135,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: TextStyle(fontSize: 18),
                   ),
                   onTap: () {
-                    setState(() {
-
-                    });
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CollegeDepartments(
+                            image: "assets/logo.png",
+                            description: "safasfaas",
+                            titleAppbar: "Physics Department",
+                          ),
+                      ),
+                    );
                   },
                 ),
                 ListTile(
@@ -132,9 +154,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: TextStyle(fontSize: 18),
                   ),
                   onTap: () {
-                    setState(() {
-
-                    });
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CollegeDepartments(
+                            image: "assets/logo.png",
+                            description: "safasfaas",
+                            titleAppbar: "Zoology Department",
+                          ),
+                      ),
+                    );
                   },
                 ),
                 ListTile(
@@ -144,9 +173,73 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: TextStyle(fontSize: 18),
                   ),
                   onTap: () {
-                    setState(() {
-
-                    });
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CollegeDepartments(
+                            image: "assets/logo.png",
+                            description: "safasfaas",
+                            titleAppbar: "Mathematics Department",
+                          ),
+                      ),
+                    );
+                  },
+                ),
+                ListTile(
+                  leading: const SizedBox(),
+                  title: const Text(
+                    'Geology Department',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CollegeDepartments(
+                          image: "assets/logo.png",
+                          description: "safasfaas",
+                          titleAppbar: "Geology Department",
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                ListTile(
+                  leading: const SizedBox(),
+                  title: const Text(
+                    'Botany Department',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CollegeDepartments(
+                          image: "assets/logo.png",
+                          description: "safasfaas",
+                          titleAppbar: "Botany Department",
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                ListTile(
+                  leading: const SizedBox(),
+                  title: const Text(
+                    'Astrology Department',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CollegeDepartments(
+                          image: "assets/logo.png",
+                          description: "safasfaas",
+                          titleAppbar: "Astrology Department",
+                        ),
+                      ),
+                    );
                   },
                 ),
               ],
