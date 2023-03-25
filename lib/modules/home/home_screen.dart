@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project_app/modules/get_id/get_id_screen.dart';
+import 'package:graduation_project_app/modules/home/about.dart';
 import 'package:graduation_project_app/modules/home/departments.dart';
 import 'package:graduation_project_app/modules/login/login_screen.dart';
 
@@ -102,7 +103,30 @@ class _HomeScreenState extends State<HomeScreen> {
                       MaterialPageRoute(
                         builder: (context) => CollegeDepartments(
                           image: "assets/logo.png",
-                          description: "safasfaas",
+                          description: "Most of us just jam randomly on the keyboard,"
+                              " into the textboxes or textareas just to get the real"
+                              " feeling of how text would look like in a web page."
+                              " Although this way works, it just doesn’t feel right!"
+                              " Creating a text on-the-fly just consumes too much time"
+                              " and brain food."
+                              "Most of us just jam randomly on the keyboard,"
+                              " into the textboxes or textareas just to get the real"
+                              " feeling of how text would look like in a web page."
+                              " Although this way works, it just doesn’t feel right!"
+                              " Creating a text on-the-fly just consumes too much time"
+                              " and brain food."
+                              "Most of us just jam randomly on the keyboard,"
+                              " into the textboxes or textareas just to get the real"
+                              " feeling of how text would look like in a web page."
+                              " Although this way works, it just doesn’t feel right!"
+                              " Creating a text on-the-fly just consumes too much time"
+                              " and brain food."
+                              "Most of us just jam randomly on the keyboard,"
+                              " into the textboxes or textareas just to get the real"
+                              " feeling of how text would look like in a web page."
+                              " Although this way works, it just doesn’t feel right!"
+                              " Creating a text on-the-fly just consumes too much time"
+                              " and brain food.",
                           titleAppbar: "Computer Science Department",
                         ),
                       ),
@@ -121,7 +145,24 @@ class _HomeScreenState extends State<HomeScreen> {
                       MaterialPageRoute(
                         builder: (context) => CollegeDepartments(
                           image: "assets/logo.png",
-                          description: "safasfaas",
+                          description: "Most of us just jam randomly on the keyboard,"
+                              " into the textboxes or textareas just to get the real"
+                              " feeling of how text would look like in a web page."
+                              " Although this way works, it just doesn’t feel right!"
+                              " Creating a text on-the-fly just consumes too much time"
+                              " and brain food."
+                              "Most of us just jam randomly on the keyboard,"
+                              " into the textboxes or textareas just to get the real"
+                              " feeling of how text would look like in a web page."
+                              " Although this way works, it just doesn’t feel right!"
+                              " Creating a text on-the-fly just consumes too much time"
+                              " and brain food."
+                              "Most of us just jam randomly on the keyboard,"
+                              " into the textboxes or textareas just to get the real"
+                              " feeling of how text would look like in a web page."
+                              " Although this way works, it just doesn’t feel right!"
+                              " Creating a text on-the-fly just consumes too much time"
+                              " and brain food.",
                           titleAppbar: "Computer Science Department",
                         ),
                       ),
@@ -140,7 +181,18 @@ class _HomeScreenState extends State<HomeScreen> {
                       MaterialPageRoute(
                         builder: (context) => CollegeDepartments(
                           image: "assets/logo.png",
-                          description: "safasfaas",
+                          description: "Most of us just jam randomly on the keyboard,"
+                              " into the textboxes or textareas just to get the real"
+                              " feeling of how text would look like in a web page."
+                              " Although this way works, it just doesn’t feel right!"
+                              " Creating a text on-the-fly just consumes too much time"
+                              " and brain food."
+                              "Most of us just jam randomly on the keyboard,"
+                              " into the textboxes or textareas just to get the real"
+                              " feeling of how text would look like in a web page."
+                              " Although this way works, it just doesn’t feel right!"
+                              " Creating a text on-the-fly just consumes too much time"
+                              " and brain food.",
                           titleAppbar: "Physics Department",
                         ),
                       ),
@@ -159,7 +211,18 @@ class _HomeScreenState extends State<HomeScreen> {
                       MaterialPageRoute(
                         builder: (context) => CollegeDepartments(
                           image: "assets/logo.png",
-                          description: "safasfaas",
+                          description: "Most of us just jam randomly on the keyboard,"
+                              " into the textboxes or textareas just to get the real"
+                              " feeling of how text would look like in a web page."
+                              " Although this way works, it just doesn’t feel right!"
+                              " Creating a text on-the-fly just consumes too much time"
+                              " and brain food."
+                              "Most of us just jam randomly on the keyboard,"
+                              " into the textboxes or textareas just to get the real"
+                              " feeling of how text would look like in a web page."
+                              " Although this way works, it just doesn’t feel right!"
+                              " Creating a text on-the-fly just consumes too much time"
+                              " and brain food.",
                           titleAppbar: "Zoology Department",
                         ),
                       ),
@@ -178,7 +241,18 @@ class _HomeScreenState extends State<HomeScreen> {
                       MaterialPageRoute(
                         builder: (context) => CollegeDepartments(
                           image: "assets/logo.png",
-                          description: "safasfaas",
+                          description: "Most of us just jam randomly on the keyboard,"
+                              " into the textboxes or textareas just to get the real"
+                              " feeling of how text would look like in a web page."
+                              " Although this way works, it just doesn’t feel right!"
+                              " Creating a text on-the-fly just consumes too much time"
+                              " and brain food."
+                              "Most of us just jam randomly on the keyboard,"
+                              " into the textboxes or textareas just to get the real"
+                              " feeling of how text would look like in a web page."
+                              " Although this way works, it just doesn’t feel right!"
+                              " Creating a text on-the-fly just consumes too much time"
+                              " and brain food.",
                           titleAppbar: "Mathematics Department",
                         ),
                       ),
@@ -197,7 +271,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       MaterialPageRoute(
                         builder: (context) => CollegeDepartments(
                           image: "assets/logo.png",
-                          description: "safasfaas",
+                          description: "Most of us just jam randomly on the keyboard,"
+                              " into the textboxes or textareas just to get the real"
+                              " feeling of how text would look like in a web page."
+                              " Although this way works, it just doesn’t feel right!"
+                              " Creating a text on-the-fly just consumes too much time"
+                              " and brain food.",
                           titleAppbar: "Geology Department",
                         ),
                       ),
@@ -216,7 +295,18 @@ class _HomeScreenState extends State<HomeScreen> {
                       MaterialPageRoute(
                         builder: (context) => CollegeDepartments(
                           image: "assets/logo.png",
-                          description: "safasfaas",
+                          description: "Most of us just jam randomly on the keyboard,"
+                              " into the textboxes or textareas just to get the real"
+                              " feeling of how text would look like in a web page."
+                              " Although this way works, it just doesn’t feel right!"
+                              " Creating a text on-the-fly just consumes too much time"
+                              " and brain food."
+                              "Most of us just jam randomly on the keyboard,"
+                              " into the textboxes or textareas just to get the real"
+                              " feeling of how text would look like in a web page."
+                              " Although this way works, it just doesn’t feel right!"
+                              " Creating a text on-the-fly just consumes too much time"
+                              " and brain food.",
                           titleAppbar: "Botany Department",
                         ),
                       ),
@@ -235,7 +325,18 @@ class _HomeScreenState extends State<HomeScreen> {
                       MaterialPageRoute(
                         builder: (context) => CollegeDepartments(
                           image: "assets/logo.png",
-                          description: "safasfaas",
+                          description: "Most of us just jam randomly on the keyboard,"
+                              " into the textboxes or textareas just to get the real"
+                              " feeling of how text would look like in a web page."
+                              " Although this way works, it just doesn’t feel right!"
+                              " Creating a text on-the-fly just consumes too much time"
+                              " and brain food."
+                              "Most of us just jam randomly on the keyboard,"
+                              " into the textboxes or textareas just to get the real"
+                              " feeling of how text would look like in a web page."
+                              " Although this way works, it just doesn’t feel right!"
+                              " Creating a text on-the-fly just consumes too much time"
+                              " and brain food.",
                           titleAppbar: "Astrology Department",
                         ),
                       ),
@@ -243,7 +344,30 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
               ],
-            ): SizedBox()
+            ): SizedBox(),
+            ListTile(
+              leading: Icon(Icons.info, color: Colors.black,),
+              title: Text(
+                'About',
+                style: TextStyle(fontSize: 18),
+              ),
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => aboutScreen()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.phone,color: Colors.black,),
+              title: Text(
+                'Connect us',
+                style: TextStyle(fontSize: 18),
+              ),
+              onTap: (){
+
+              },
+            ),
           ],
         ),
       ),
