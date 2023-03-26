@@ -36,9 +36,12 @@ class _HomeStudentScreenState extends State<HomeStudentScreen> {
                   height: size.width * 0.3,
                   width: size.width * 0.3,
                   decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                          image: AssetImage("assets/logo.png"))),
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: AssetImage("assets/back2.jpg"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -75,7 +78,10 @@ class _HomeStudentScreenState extends State<HomeStudentScreen> {
                 style: TextStyle(fontSize: 18),
               ),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewTableScreen()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ViewTableScreen()));
               },
             ),
             ListTile(
@@ -88,7 +94,10 @@ class _HomeStudentScreenState extends State<HomeStudentScreen> {
                 style: TextStyle(fontSize: 18),
               ),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const UpdateProfileScreen()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const UpdateProfileScreen()));
               },
             ),
           ],
