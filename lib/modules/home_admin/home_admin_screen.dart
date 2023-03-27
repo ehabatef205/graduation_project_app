@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project_app/modules/view_table/view_courses_screen.dart';
+import 'package:graduation_project_app/modules/view_table_courses/view_courses_screen.dart';
 
 class HomeAdminScreen extends StatefulWidget {
   const HomeAdminScreen({Key? key}) : super(key: key);
@@ -27,6 +27,23 @@ class _HomeAdminScreenState extends State<HomeAdminScreen> {
       drawer: Drawer(
         child: ListView(
           children: [
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                  height: size.width * 0.3,
+                  width: size.width * 0.3,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: AssetImage("assets/back2.jpg"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
+            ),
             const Padding(
               padding: EdgeInsets.only(
                 left: 10,
