@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project_app/modules/home_admin/home_admin_screen.dart';
 import 'package:graduation_project_app/modules/home_student/home_student_screen.dart';
 import 'package:graduation_project_app/modules/login/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/login/cubit/states.dart';
@@ -147,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const HomeStudentScreen()));
+                                              const HomeAdminScreen()));
                                 }
                               },
                               color: Colors.black87,
