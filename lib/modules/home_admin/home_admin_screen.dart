@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project_app/modules/view_table_courses/view_courses_screen.dart';
+import 'package:graduation_project_app/modules/view_table_student/view_table_student.dart';
 
 class HomeAdminScreen extends StatefulWidget {
   const HomeAdminScreen({Key? key}) : super(key: key);
@@ -82,6 +83,22 @@ class _HomeAdminScreenState extends State<HomeAdminScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) =>  ViewCoursesScreen()),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.table_rows_outlined,
+                color: Colors.black,
+              ),
+              title: const Text(
+                "View Student",
+                style: TextStyle(fontSize: 18),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) =>  ViewStudentScreen()),
                 );
               },
             ),
