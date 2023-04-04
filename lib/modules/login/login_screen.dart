@@ -148,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const HomeAdminScreen()));
+                                              const HomeStudentScreen()));
                                 }
                               },
                               color: Colors.black87,
