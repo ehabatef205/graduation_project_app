@@ -13,14 +13,13 @@ class AppScreen extends StatelessWidget {
       builder: (context, state) {
         AppCubit cubit = AppCubit.get(context);
         return Scaffold(
-          backgroundColor: Colors.grey[200],
             body: cubit.screens[cubit.bottomNavIndex], //destination screen
             bottomNavigationBar: FluidNavBar(
-              style: const FluidNavBarStyle(
-                barBackgroundColor: Colors.white,
-                iconSelectedForegroundColor: Colors.white,
+              style: FluidNavBarStyle(
+                barBackgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+                iconSelectedForegroundColor: Colors.grey,
                 iconUnselectedForegroundColor: Colors.grey,
-                iconBackgroundColor: Colors.white
+                iconBackgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
               ),
               animationFactor: 1,
               defaultIndex: 0,

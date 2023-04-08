@@ -1,22 +1,26 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/MyBlocObserver.dart';
-import 'package:graduation_project_app/modules/home_student/cubit/cubit.dart';
-import 'package:graduation_project_app/modules/splash/splash_sceen.dart';
+import 'package:graduation_project_app/modules/setings/cubit/cubit.dart';
+import 'package:graduation_project_app/modules/splash/splash_screen.dart';
+import 'package:graduation_project_app/shared/theme.dart';
+import 'package:provider/provider.dart';
 
 import 'layout/cubit/cubit.dart';
 import 'layout/cubit/states.dart';
 
-
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
-  runApp(MyApp());
+  return runApp(ChangeNotifierProvider<ThemeNotifier>(
+    create: (_) => ThemeNotifier(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -28,10 +32,13 @@ class MyApp extends StatelessWidget {
       child: BlocConsumer<AppCubit, AppStates>(
           listener: (context, state) {},
           builder: (context, state) {
-            return const MaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: 'Talk and Smoke',
-              home: SplashScreen(),
+            return Consumer<ThemeNotifier>(
+              builder: (context, ThemeNotifier theme, _) => MaterialApp(
+                title: 'Education System',
+                theme: theme.getTheme(),
+                debugShowCheckedModeBanner: false,
+                home: const SplashScreen(),
+              ),
             );
           }),
     );

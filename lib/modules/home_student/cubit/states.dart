@@ -1,3 +1,3 @@
-abstract class HomeStudentStates {}
+abstract class HomeStudentStates{}
 
-class HomeStudentInitialState extends HomeStudentStates {}
+class InitailHomeStudentState extends HomeStudentStates{}
