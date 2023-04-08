@@ -7,8 +7,8 @@ class ThemeNotifier with ChangeNotifier {
   ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: Colors.grey[300],
     appBarTheme: AppBarTheme(
-      backgroundColor: Colors.white,
-      elevation: 0,
+      backgroundColor: Colors.grey[300],
+      elevation: 2,
       systemOverlayStyle: const SystemUiOverlayStyle(
         statusBarColor: Colors.white,
         statusBarIconBrightness: Brightness.dark,
@@ -37,8 +37,9 @@ class ThemeNotifier with ChangeNotifier {
       thickness: 1,
     ),
     iconTheme: const IconThemeData(color: Colors.black),
-    textTheme: const TextTheme(
+    textTheme: TextTheme(
       bodyText1: TextStyle(color: Colors.black,),
+      bodyText2: TextStyle(color: Colors.blueGrey[200]),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: Colors.grey[100],
@@ -49,12 +50,12 @@ class ThemeNotifier with ChangeNotifier {
     scaffoldBackgroundColor: Colors.grey[900],
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.grey[900],
-      elevation: 0,
+      elevation: 1,
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: darkColor,
         statusBarIconBrightness: Brightness.light,
       ),
-      titleTextStyle: TextStyle(color: colorButton),
+      titleTextStyle: TextStyle(color: Colors.white),
       iconTheme: const IconThemeData(
         color: Colors.white,
       ),
@@ -75,11 +76,11 @@ class ThemeNotifier with ChangeNotifier {
     ),
     dividerTheme: const DividerThemeData(
       color: Colors.grey,
-      endIndent: 15,
       thickness: 1,
     ),
-    textTheme: const TextTheme(
+    textTheme: TextTheme(
       bodyText1: TextStyle(color: Colors.white,),
+      bodyText2: TextStyle(color: Colors.blueGrey[400]),
     ),
     iconTheme: const IconThemeData(
       color: Colors.white,

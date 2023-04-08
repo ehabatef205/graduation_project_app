@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/layout/cubit/states.dart';
 import 'package:graduation_project_app/modules/home_student/home_student_screen.dart';
 import 'package:graduation_project_app/modules/setings/settings_screen.dart';
+import 'package:graduation_project_app/modules/view_table/view_table_screen.dart';
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialState());
@@ -16,7 +17,7 @@ class AppCubit extends Cubit<AppStates> {
 
   List<Widget> screens = [
     const HomeStudentScreen(),
-    const Center(child: Text("Courses Screen")),
+    const ViewTableScreen(),
     const Center(child: Text("Chat Screen")),
     const SettingsScreen(),
   ];
