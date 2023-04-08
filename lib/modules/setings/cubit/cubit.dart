@@ -27,7 +27,6 @@ class SettingsCubit extends Cubit<SettingsStates> {
         } else {
           theme.setDarkMode();
         }
-        readDark(context);
         emit(ChangeModeState());
     });
   }

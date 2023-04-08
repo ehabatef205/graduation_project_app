@@ -123,7 +123,7 @@ class ViewCommentsScreen extends StatelessWidget {
                             controller: cubit.controller,
                             type: TextInputType.text,
                             context: context,
-                            hint: "Comment ..."
+                            hint: "Comment ...",
                           ),
                         ),
                         IconButton(

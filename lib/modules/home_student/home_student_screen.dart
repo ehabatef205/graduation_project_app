@@ -43,7 +43,7 @@ class HomeStudentScreen extends StatelessWidget {
                               style: TextStyle(
                                 color: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyText2!
                                     .color,
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500,
