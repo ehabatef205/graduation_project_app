@@ -6,6 +6,7 @@ Widget TextFormFieldWidget({
   required TextInputType type,
   required BuildContext context,
   String? hint,
+  String? labelText,
   String? Function(String?)? validate,
   Function(String?)? onChanged,
   bool obscureText = false,
@@ -31,6 +32,8 @@ Widget TextFormFieldWidget({
       decoration: InputDecoration(
         filled: true,
         hintText: hint,
+        labelText: labelText,
+        labelStyle: TextStyle(color: Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.5)),
         hintStyle: TextStyle(color: Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.5)),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(25),

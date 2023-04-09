@@ -12,6 +12,13 @@ class ViewTableScreen extends StatelessWidget {
     int index1 = 0;
     Color? color1 = Theme.of(context).textTheme.bodyText1!.color;
     Color? color2 = Theme.of(context).textTheme.bodyText2!.color;
+    Color? color3 = Theme.of(context).textTheme.headline1!.color;
+    Color? color4 = Theme.of(context).textTheme.headline2!.color;
+    Color? color5 = Theme.of(context).textTheme.headline3!.color;
+    Color? color6 = Theme.of(context).textTheme.headline4!.color;
+    Color? color7 = Theme.of(context).textTheme.headline5!.color;
+    Color? color8 = Theme.of(context).textTheme.headline6!.color;
+    Color? coloWhite = Colors.white;
     return BlocProvider(
       create: (BuildContext context) => ViewTableCubit(),
       child: BlocConsumer<ViewTableCubit, ViewTableStates>(
@@ -223,55 +230,62 @@ class ViewTableScreen extends StatelessWidget {
                                               "10",
                                               color2!,
                                               color1!,
-                                              0
+                                              coloWhite!,
+                                              0,
                                             ),
                                             buildContainerData(
                                               "Math",
                                               2,
                                               "10",
-                                              color2!,
+                                              color3!,
                                               color1!,
-                                              0
+                                              coloWhite!,
+                                              0,
                                             ),
                                             buildContainerData(
                                               "Math",
                                               2,
                                               "10",
-                                              color2!,
+                                              color4!,
                                               color1!,
-                                              0
+                                              coloWhite!,
+                                              0,
                                             ),
                                             buildContainerData(
                                               "Math",
                                               2,
                                               "10",
-                                              color2!,
+                                              color5!,
                                               color1!,
-                                              0
+                                              coloWhite!,
+                                              0,
                                             ),
                                             buildContainerData(
                                               "Math",
                                               2,
                                               "10",
-                                              color2!,
+                                              color6!,
                                               color1!,
-                                              0
+                                              coloWhite!,
+                                              0,
                                             ),
                                             buildContainerData(
                                               "Math",
                                               2,
                                               "10",
-                                              color2!,
+                                              color7!,
                                               color1!,
-                                              0
+                                              coloWhite!,
+                                              0,
                                             ),
                                             buildContainerData(
                                               "Math",
                                               2,
                                               "10",
-                                              color2!,
+                                              color8!,
                                               color1!,
-                                              -1
+                                              coloWhite!,
+                                              -1,
                                             ),
                                           ],
                                         );
@@ -289,7 +303,7 @@ class ViewTableScreen extends StatelessWidget {
     );
   }
 
-  Widget buildContainerData(String name , int group , String place , Color color , Color color1 , int end){
+  Widget buildContainerData(String name , int group , String place , Color color , Color color1 , Color color2, int end){
     if(end != -1){
       return Container(
         height: 120,
@@ -314,7 +328,7 @@ class ViewTableScreen extends StatelessWidget {
           child: Text(
             "${name} \n ${group} \n ${place}",
             style: TextStyle(
-                color: color1
+                color: color2
             ),
           ),
         ),
@@ -344,7 +358,7 @@ class ViewTableScreen extends StatelessWidget {
           child: Text(
             "${name} \n ${group} \n ${place}",
             style: TextStyle(
-                color: color1
+                color: color2
             ),
           ),
         ),

@@ -39,7 +39,13 @@ class ThemeNotifier with ChangeNotifier {
     iconTheme: const IconThemeData(color: Colors.black),
     textTheme: TextTheme(
       bodyText1: TextStyle(color: Colors.black,),
-      bodyText2: TextStyle(color: Colors.blueGrey[200]),
+      bodyText2: TextStyle(color: Colors.blueGrey[400]),
+      headline1: TextStyle(color: Colors.red[300]),
+      headline2: TextStyle(color: Colors.blue[300]),
+      headline3: TextStyle(color: Colors.purple[400]),
+      headline4: TextStyle(color: Colors.teal[500]),
+      headline5: TextStyle(color: Colors.orange[300]),
+      headline6: TextStyle(color: Colors.green[400]),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: Colors.grey[100],
@@ -81,6 +87,12 @@ class ThemeNotifier with ChangeNotifier {
     textTheme: TextTheme(
       bodyText1: TextStyle(color: Colors.white,),
       bodyText2: TextStyle(color: Colors.blueGrey[400]),
+      headline1: TextStyle(color: Colors.red[300]),
+      headline2: TextStyle(color: Colors.blue[300]),
+      headline3: TextStyle(color: Colors.purple[400]),
+      headline4: TextStyle(color: Colors.teal[500]),
+      headline5: TextStyle(color: Colors.orange[300]),
+      headline6: TextStyle(color: Colors.green[400]),
     ),
     iconTheme: const IconThemeData(
       color: Colors.white,
