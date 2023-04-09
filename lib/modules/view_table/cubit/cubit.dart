@@ -8,5 +8,5 @@ class ViewTableCubit extends Cubit<ViewTableStates> {
   static ViewTableCubit get(context) => BlocProvider.of(context);
 
   List<String> days = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
-  List<String> time = ["8 am","10 am","12 am","2 am","4 am","6 am","8 am",];
+  List<String> time = ["8 am","10 am","12 pm","2 pm","4 pm","6 pm","8 pm",];
 }
