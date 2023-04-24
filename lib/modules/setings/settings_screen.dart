@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/modules/setings/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/setings/cubit/states.dart';
+import 'package:graduation_project_app/modules/update_profile/update_profile_screen.dart';
+import 'package:graduation_project_app/modules/view_profile/view_profile_screen.dart';
 import 'package:graduation_project_app/shared/theme.dart';
 import 'package:provider/provider.dart';
 
@@ -40,6 +42,55 @@ class SettingsScreen extends StatelessWidget {
                       Icons.dark_mode,
                       color: Colors.grey,
                     ),
+                  ),
+                  ListTile(
+                    leading: Icon(
+                      Icons.update,
+                      color: Theme.of(context).textTheme.bodyText1!.color,
+                    ),
+                    title: Text(
+                      "View Profile",
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Theme.of(context).textTheme.bodyText1!.color,
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ViewProfileScreen()));
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(
+                      Icons.info,
+                      color: Theme.of(context).textTheme.bodyText1!.color,
+                    ),
+                    title: Text(
+                      'About',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Theme.of(context).textTheme.bodyText1!.color,
+                      ),
+                    ),
+                    onTap: (){
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(
+                      Icons.phone,
+                      color: Theme.of(context).textTheme.bodyText1!.color,
+                    ),
+                    title: Text(
+                      'Connect us',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Theme.of(context).textTheme.bodyText1!.color,
+                      ),
+                    ),
+                    onTap: (){
+                    },
                   ),
                 ],
               ),

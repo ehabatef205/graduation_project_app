@@ -5,6 +5,8 @@ import 'package:graduation_project_app/layout/cubit/cubit.dart';
 import 'package:graduation_project_app/layout/cubit/states.dart';
 
 class AppScreen extends StatelessWidget {
+  const AppScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
