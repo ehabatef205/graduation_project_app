@@ -19,8 +19,8 @@ class AppScreen extends StatelessWidget {
             bottomNavigationBar: FluidNavBar(
               style: FluidNavBarStyle(
                 barBackgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-                iconSelectedForegroundColor: Colors.grey,
-                iconUnselectedForegroundColor: Colors.grey,
+                iconSelectedForegroundColor: Theme.of(context).iconTheme.color,
+                iconUnselectedForegroundColor: Theme.of(context).iconTheme.color,
                 iconBackgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
               ),
               animationFactor: 1,

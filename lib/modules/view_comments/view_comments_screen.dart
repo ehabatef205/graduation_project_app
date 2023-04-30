@@ -32,7 +32,7 @@ class ViewCommentsScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(25),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.grey.withOpacity(0.2),
+                                    color: Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.2),
                                     spreadRadius: 1,
                                     blurRadius: 4,
                                     offset: const Offset(0, 0),

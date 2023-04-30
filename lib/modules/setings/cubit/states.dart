@@ -1,5 +1,5 @@
 abstract class SettingsStates {}
 
-class InitailSettingsState extends SettingsStates {}
+class InitialSettingsState extends SettingsStates {}
 
 class ChangeModeState extends SettingsStates {}

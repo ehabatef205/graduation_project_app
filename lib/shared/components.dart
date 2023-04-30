@@ -27,14 +27,18 @@ Widget TextFormFieldWidget({
       minLines: 1,
       obscureText: obscureText,
       textAlign: textAlign,
-      cursorColor: Colors.black,
-      style: Theme.of(context).textTheme.bodyText1,
+      style: TextStyle(
+          color: Theme.of(context).textTheme.bodyText1!.color, fontSize: 18),
       decoration: InputDecoration(
         filled: true,
         hintText: hint,
         labelText: labelText,
-        labelStyle: TextStyle(color: Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.5)),
-        hintStyle: TextStyle(color: Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.5)),
+        labelStyle: TextStyle(
+            color:
+                Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.5)),
+        hintStyle: TextStyle(
+            color:
+                Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.5)),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(25),
           borderSide: BorderSide(

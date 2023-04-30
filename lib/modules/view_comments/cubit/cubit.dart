@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/modules/view_comments/cubit/states.dart';
 
 class ViewCommentsCubit extends Cubit<ViewCommentsStates> {
-  ViewCommentsCubit() : super(InitailViewCommentsState());
+  ViewCommentsCubit() : super(InitialViewCommentsState());
 
   static ViewCommentsCubit get(context) => BlocProvider.of(context);
 

@@ -5,18 +5,19 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeNotifier with ChangeNotifier {
   ThemeData lightTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.grey[300],
-    appBarTheme: AppBarTheme(
-      backgroundColor: Colors.grey[300],
+    scaffoldBackgroundColor: Colors.white,
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Colors.white,
       elevation: 2,
-      systemOverlayStyle: const SystemUiOverlayStyle(
+      systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: Colors.white,
         statusBarIconBrightness: Brightness.dark,
       ),
-      titleTextStyle: TextStyle(color: colorButton),
-      iconTheme: const IconThemeData(
+      titleTextStyle: TextStyle(color: Colors.white),
+      iconTheme: IconThemeData(
         color: Colors.black,
       ),
+      centerTitle: true,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
@@ -50,6 +51,7 @@ class ThemeNotifier with ChangeNotifier {
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: Colors.grey[100],
     ),
+    textSelectionTheme: TextSelectionThemeData(cursorColor: Colors.grey[900])
   );
 
   ThemeData darkTheme = ThemeData(
@@ -58,13 +60,14 @@ class ThemeNotifier with ChangeNotifier {
       backgroundColor: Colors.grey[900],
       elevation: 1,
       systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarColor: darkColor,
+        statusBarColor: Colors.grey[900],
         statusBarIconBrightness: Brightness.light,
       ),
       titleTextStyle: TextStyle(color: Colors.white),
       iconTheme: const IconThemeData(
         color: Colors.white,
       ),
+      centerTitle: true,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
@@ -100,6 +103,7 @@ class ThemeNotifier with ChangeNotifier {
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: Colors.grey[800],
     ),
+      textSelectionTheme: TextSelectionThemeData(cursorColor: Colors.white)
   );
 
   ThemeData _themeData = ThemeData();
