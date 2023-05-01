@@ -29,7 +29,7 @@ class ViewCommentsScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                 color:
                                 Theme.of(context).scaffoldBackgroundColor,
-                                borderRadius: BorderRadius.circular(25),
+                                borderRadius: BorderRadius.circular(10),
                                 boxShadow: [
                                   BoxShadow(
                                     color: Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.2),

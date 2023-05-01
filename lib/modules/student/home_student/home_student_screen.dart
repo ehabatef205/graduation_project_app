@@ -102,7 +102,7 @@ class HomeStudentScreen extends StatelessWidget {
                                 child: Container(
                                   width: size.width,
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
+                                    borderRadius: BorderRadius.circular(10),
                                     color: Theme.of(context)
                                         .scaffoldBackgroundColor,
                                     boxShadow: [

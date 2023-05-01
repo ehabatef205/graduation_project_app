@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduation_project_app/modules/student/view_posts_course/cubit/cubit.dart';
-import 'package:graduation_project_app/modules/student/view_posts_course/cubit/states.dart';
+import 'package:graduation_project_app/modules/doctor/create_post_doctor/create_post_doctor.dart';
+import 'package:graduation_project_app/modules/doctor/view_posts_course_doctor/cubit/cubit.dart';
+import 'package:graduation_project_app/modules/doctor/view_posts_course_doctor/cubit/states.dart';
 import 'package:graduation_project_app/modules/view_comments/view_comments_screen.dart';
 
-class ViewPostsCourseScreen extends StatelessWidget {
+class ViewPostsCourseDoctorScreen extends StatelessWidget {
   final String course_id;
-  const ViewPostsCourseScreen({Key? key, required this.course_id}) : super(key: key);
+  const ViewPostsCourseDoctorScreen({Key? key, required this.course_id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return BlocProvider(
-        create: (BuildContext context) => ViewPostsCourseCubit(),
-        child: BlocConsumer<ViewPostsCourseCubit, ViewPostsCourseStates>(
+        create: (BuildContext context) => ViewPostsCourseDoctorCubit(),
+        child: BlocConsumer<ViewPostsCourseDoctorCubit, ViewPostsCourseDoctorStates>(
           listener: (context, state) {},
           builder: (context, state) {
-            ViewPostsCourseCubit cubit = ViewPostsCourseCubit.get(context);
+            ViewPostsCourseDoctorCubit cubit = ViewPostsCourseDoctorCubit.get(context);
             return Scaffold(
               appBar: AppBar(
                 title: Text(
@@ -26,6 +27,24 @@ class ViewPostsCourseScreen extends StatelessWidget {
                     color: Theme.of(context).textTheme.bodyText1!.color,
                   ),
                 ),
+                actions: [
+                  IconButton(
+                    padding: EdgeInsets.zero,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              CreatePostDoctorScreen(),
+                        ),
+                      );
+                    },
+                    icon: Icon(
+                      Icons.add,
+                      color: Theme.of(context).iconTheme.color,
+                    ),
+                  ),
+                ],
               ),
               body: SafeArea(
                 child: ListView.builder(
@@ -58,52 +77,115 @@ class ViewPostsCourseScreen extends StatelessWidget {
                             CrossAxisAlignment.start,
                             children: [
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Container(
-                                    height: 35,
-                                    width: 35,
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        image: DecorationImage(
-                                            image: AssetImage(
-                                                cubit.list[index]
-                                                ["image"]),
-                                            fit: BoxFit.fill)),
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                  Row(
                                     children: [
-                                      Text(
-                                        cubit.list[index]["name"],
-                                        style: TextStyle(
-                                          color: Theme.of(context)
-                                              .textTheme
-                                              .bodyText1!
-                                              .color,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                                      Container(
+                                        height: 35,
+                                        width: 35,
+                                        decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            image: DecorationImage(
+                                                image: AssetImage(
+                                                    cubit.list[index]
+                                                    ["image"]),
+                                                fit: BoxFit.fill)),
                                       ),
                                       const SizedBox(
-                                        height: 5,
+                                        width: 10,
                                       ),
-                                      Text(
-                                        cubit.list[index]["time"],
-                                        style: TextStyle(
-                                          color: Theme.of(context)
-                                              .textTheme
-                                              .bodyText1!
-                                              .color,
-                                        ),
+                                      Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Text(
+                                                cubit.list[index]["name"],
+                                                style: TextStyle(
+                                                  color: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyText1!
+                                                      .color,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                              const SizedBox(width: 10,),
+                                              Icon(
+                                                cubit.list[index]["hidden"]? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                                                color: Theme.of(context).iconTheme.color,
+                                                size: 15,
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Text(
+                                            cubit.list[index]["time"],
+                                            style: TextStyle(
+                                              color: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText1!
+                                                  .color,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),
+                                  PopupMenuButton<int>(
+                                    color: Theme.of(context).scaffoldBackgroundColor,
+                                    onSelected: (value) {
+                                      if(value == 2){
+                                        cubit.changeView(index);
+                                      }
+                                    },
+                                    itemBuilder: (context) => [
+                                      PopupMenuItem(
+                                        value: 1,
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.delete_outline,
+                                              color: Theme.of(context).iconTheme.color,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text(
+                                              "Delete Post",
+                                              style: TextStyle(
+                                                  color: Theme.of(context).textTheme.bodyText1!.color),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      PopupMenuItem(
+                                        value: 2,
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              cubit.list[index]["hidden"]? Icons.visibility_outlined : Icons.visibility_off_outlined,
+                                              color: Theme.of(context).iconTheme.color,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text(
+                                              cubit.list[index]["hidden"]? "Show" : "Hidden",
+                                              style: TextStyle(
+                                                  color: Theme.of(context).textTheme.bodyText1!.color),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  )
                                 ],
                               ),
                               const SizedBox(
