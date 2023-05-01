@@ -7,6 +7,7 @@ import 'package:graduation_project_app/layout/cubit/states.dart';
 import 'package:graduation_project_app/modules/admin/create_data/create_data_screen.dart';
 import 'package:graduation_project_app/modules/admin/department/department_screen.dart';
 import 'package:graduation_project_app/modules/admin/home_admin/home_admin_screen.dart';
+import 'package:graduation_project_app/modules/doctor/view_doctor_table/view_table_doctor_screen.dart';
 import 'package:graduation_project_app/modules/student/home_student/home_student_screen.dart';
 import 'package:graduation_project_app/modules/setings/settings_screen.dart';
 import 'package:graduation_project_app/modules/student/view_table/view_table_screen.dart';
@@ -20,7 +21,7 @@ class AppCubit extends Cubit<AppStates> {
 
   List<Widget> screens = [
     const HomeAdminScreen(),
-    const DepartmentScreen(),
+    const ViewDoctorTableScreen(),
     const Center(child: Text("Chat Screen")),
     const SettingsScreen(),
   ];

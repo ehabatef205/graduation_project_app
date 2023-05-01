@@ -3,9 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/modules/admin/create_course/create_course.dart';
 import 'package:graduation_project_app/modules/admin/courses/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/admin/courses/cubit/states.dart';
+import 'package:graduation_project_app/modules/admin/create_department/create_department.dart';
+import 'package:graduation_project_app/modules/admin/view_course/view_course.dart';
 
 class CoursesScreen extends StatelessWidget {
   final String department;
+
   const CoursesScreen({Key? key, required this.department}) : super(key: key);
 
   @override
@@ -34,13 +37,27 @@ class CoursesScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>
-                              CreateCourseScreen(),
+                          builder: (context) => CreateCourseScreen(),
                         ),
                       );
                     },
                     icon: Icon(
                       Icons.add,
+                      color: Theme.of(context).iconTheme.color,
+                    ),
+                  ),
+                  IconButton(
+                    padding: EdgeInsets.zero,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CreateDepartmentScreen(),
+                        ),
+                      );
+                    },
+                    icon: Icon(
+                      Icons.edit,
                       color: Theme.of(context).iconTheme.color,
                     ),
                   ),
@@ -62,11 +79,14 @@ class CoursesScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(5),
                         child: Container(
                           decoration: BoxDecoration(
-                            color:
-                                Theme.of(context).scaffoldBackgroundColor,
+                            color: Theme.of(context).scaffoldBackgroundColor,
                             boxShadow: [
                               BoxShadow(
-                                color: Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.2),
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1!
+                                    .color!
+                                    .withOpacity(0.2),
                                 spreadRadius: 1,
                                 blurRadius: 4,
                                 offset: const Offset(0, 0),
@@ -75,7 +95,14 @@ class CoursesScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ViewCourseScreen(),
+                                ),
+                              );
+                            },
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -88,8 +115,7 @@ class CoursesScreen extends StatelessWidget {
                                   width: 10,
                                 ),
                                 Text(
-                                  cubit.courses[index]
-                                      ["course_id"],
+                                  cubit.courses[index]["course_id"],
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyText1!

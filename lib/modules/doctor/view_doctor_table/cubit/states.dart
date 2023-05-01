@@ -1,0 +1,4 @@
+abstract class ViewDoctorTableStates{}
+
+class ViewDoctorTableInitialState extends ViewDoctorTableStates{}
+class ChangeViewDoctorTableState extends ViewDoctorTableStates{}
