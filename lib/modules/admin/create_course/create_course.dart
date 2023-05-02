@@ -84,6 +84,8 @@ class CreateCourseScreen extends StatelessWidget {
                       controller: cubit.courseDesController,
                       type: TextInputType.text,
                       context: context,
+                      maxLines: 10,
+                      maxHeight: 500,
                       labelText: "Course Description",
                       validate: (value) {
                         if (value!.isEmpty) {

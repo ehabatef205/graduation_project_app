@@ -16,12 +16,15 @@ Widget TextFormFieldWidget({
   Widget? prefixIcon,
   Widget? suffixIcon,
   bool enable = true,
+  double maxHeight = 60,
+  int? maxLines,
 }) =>
     TextFormField(
       onEditingComplete: onEditingComplete,
       onChanged: onChanged,
       keyboardType: type,
       enabled: enable,
+      maxLines: maxLines,
       inputFormatters: inputFormatters,
       controller: controller,
       minLines: 1,
@@ -30,6 +33,9 @@ Widget TextFormFieldWidget({
       style: TextStyle(
           color: Theme.of(context).textTheme.bodyText1!.color, fontSize: 18),
       decoration: InputDecoration(
+        constraints: BoxConstraints(
+          maxHeight: maxHeight,
+        ),
         filled: true,
         hintText: hint,
         labelText: labelText,

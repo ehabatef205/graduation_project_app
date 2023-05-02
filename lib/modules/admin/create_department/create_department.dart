@@ -84,6 +84,8 @@ class CreateDepartmentScreen extends StatelessWidget {
                         controller: cubit.departmentDesController,
                         type: TextInputType.text,
                         context: context,
+                        maxLines: 10,
+                        maxHeight: 500,
                         labelText: "Department Description",
                         validate: (value) {
                           if (value!.isEmpty) {

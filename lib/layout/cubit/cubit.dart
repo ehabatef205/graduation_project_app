@@ -22,7 +22,7 @@ class AppCubit extends Cubit<AppStates> {
 
   List<Widget> screens = [
     const HomeDoctorScreen(),
-    const ViewDoctorTableScreen(),
+    const DepartmentScreen(),
     const Center(child: Text("Chat Screen")),
     const SettingsScreen(),
   ];
