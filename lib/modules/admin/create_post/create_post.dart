@@ -69,7 +69,6 @@ class CreatePostScreen extends StatelessWidget {
                       controller: cubit.postNameController,
                       type: TextInputType.text,
                       context: context,
-                      maxHeight: 500,
                       maxLines: 10,
                       labelText: "Post text",
                       validate: (value) {

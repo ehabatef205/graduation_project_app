@@ -85,7 +85,6 @@ class CreateDepartmentScreen extends StatelessWidget {
                         type: TextInputType.text,
                         context: context,
                         maxLines: 10,
-                        maxHeight: 500,
                         labelText: "Department Description",
                         validate: (value) {
                           if (value!.isEmpty) {

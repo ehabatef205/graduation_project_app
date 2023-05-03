@@ -70,7 +70,6 @@ class CreatePostDoctorScreen extends StatelessWidget {
                       type: TextInputType.text,
                       context: context,
                       maxLines: 10,
-                      maxHeight: 500,
                       labelText: "Post text",
                       validate: (value) {
                         if (value!.isEmpty) {

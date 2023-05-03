@@ -85,7 +85,6 @@ class CreateCourseScreen extends StatelessWidget {
                       type: TextInputType.text,
                       context: context,
                       maxLines: 10,
-                      maxHeight: 500,
                       labelText: "Course Description",
                       validate: (value) {
                         if (value!.isEmpty) {

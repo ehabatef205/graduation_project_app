@@ -16,7 +16,6 @@ Widget TextFormFieldWidget({
   Widget? prefixIcon,
   Widget? suffixIcon,
   bool enable = true,
-  double maxHeight = 60,
   int? maxLines,
 }) =>
     TextFormField(
@@ -33,9 +32,6 @@ Widget TextFormFieldWidget({
       style: TextStyle(
           color: Theme.of(context).textTheme.bodyText1!.color, fontSize: 18),
       decoration: InputDecoration(
-        constraints: BoxConstraints(
-          maxHeight: maxHeight,
-        ),
         filled: true,
         hintText: hint,
         labelText: labelText,
