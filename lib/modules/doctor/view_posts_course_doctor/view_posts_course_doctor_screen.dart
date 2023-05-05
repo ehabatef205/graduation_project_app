@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/modules/doctor/create_post_doctor/create_post_doctor.dart';
+import 'package:graduation_project_app/modules/doctor/view_comments_doctor/view_comments_doctor_screen.dart';
 import 'package:graduation_project_app/modules/doctor/view_posts_course_doctor/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/doctor/view_posts_course_doctor/cubit/states.dart';
-import 'package:graduation_project_app/modules/view_comments/view_comments_screen.dart';
 
 class ViewPostsCourseDoctorScreen extends StatelessWidget {
   final String course_id;
@@ -230,7 +230,7 @@ class ViewPostsCourseDoctorScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              ViewCommentsScreen(
+                                              ViewCommentsDoctorScreen(
                                                 list: cubit.list[index]
                                                 ["comments"],
                                               ),

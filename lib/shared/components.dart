@@ -16,7 +16,7 @@ Widget TextFormFieldWidget({
   Widget? prefixIcon,
   Widget? suffixIcon,
   bool enable = true,
-  int? maxLines,
+  int? maxLines = 1,
 }) =>
     TextFormField(
       onEditingComplete: onEditingComplete,

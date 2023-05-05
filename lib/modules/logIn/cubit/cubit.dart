@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project_app/layout/app_layout.dart';
+import 'package:graduation_project_app/models/login_management_model.dart';
+import 'package:graduation_project_app/models/login_student_model.dart';
 import 'package:graduation_project_app/modules/logIn/cubit/states.dart';
+import 'package:graduation_project_app/shared/constant.dart';
+import 'package:graduation_project_app/shared/network/dio_helper.dart';
 
 class LoginCubit extends Cubit<LoginStates> {
   LoginCubit() : super(LoginInitialState());
@@ -9,9 +14,46 @@ class LoginCubit extends Cubit<LoginStates> {
   TextEditingController idController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool isPassword = true;
+  bool isLoading = false;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   void passwordChange() {
     isPassword = !isPassword;
     emit(ChangeState());
+  }
+
+  void userLogin({required BuildContext context}) {
+    try {
+      isLoading = true;
+      emit(LoginLoadingState());
+      DioHelper.postData(
+        url: "/api/login",
+        data: {
+          'id': idController.text,
+          'password': passwordController.text,
+        },
+      ).then((value) {
+        if (value.data["user_type"] == "student") {
+          loginStudentModel = LoginStudentModel.fromJson(value.data);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      AppScreen(userType: loginStudentModel!.userType!)));
+        } else {
+          loginManagementModel = LoginManagementModel.fromJson(value.data);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      AppScreen(userType: loginManagementModel!.userType!)));
+        }
+        emit(LoginSuccessState());
+      }).catchError((error) {
+        print(error.toString());
+        isLoading = false;
+        emit(LoginErrorState());
+      });
+    } catch (e) {}
   }
 }

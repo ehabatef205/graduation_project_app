@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/modules/doctor/home_doctor/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/doctor/home_doctor/cubit/states.dart';
-import 'package:graduation_project_app/modules/doctor/view_posts_course_doctor/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/doctor/view_posts_course_doctor/view_posts_course_doctor_screen.dart';
-import 'package:graduation_project_app/modules/view_comments/view_comments_screen.dart';
-import 'package:graduation_project_app/modules/student/view_posts_course/view_posts_course_screen.dart';
 
 class HomeDoctorScreen extends StatelessWidget {
   const HomeDoctorScreen({Key? key}) : super(key: key);

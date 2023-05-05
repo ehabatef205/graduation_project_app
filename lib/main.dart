@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/MyBlocObserver.dart';
 import 'package:graduation_project_app/modules/setings/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/splash/splash_screen.dart';
+import 'package:graduation_project_app/shared/network/dio_helper.dart';
 import 'package:graduation_project_app/shared/theme.dart';
 import 'package:provider/provider.dart';
 
@@ -12,6 +13,7 @@ import 'layout/cubit/states.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
+  DioHelper.init();
   return runApp(ChangeNotifierProvider<ThemeNotifier>(
     create: (_) => ThemeNotifier(),
     child: const MyApp(),

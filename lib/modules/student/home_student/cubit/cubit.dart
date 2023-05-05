@@ -1,132 +1,28 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project_app/models/post_model.dart';
 import 'package:graduation_project_app/modules/student/home_student/cubit/states.dart';
+import 'package:graduation_project_app/shared/constant.dart';
+import 'package:graduation_project_app/shared/network/dio_helper.dart';
+import 'package:graduation_project_app/shared/string_extension.dart';
 
 class HomeStudentCubit extends Cubit<HomeStudentStates> {
   HomeStudentCubit() : super(InitialHomeStudentState());
 
   static HomeStudentCubit get(context) => BlocProvider.of(context);
 
-  List<Map<String, dynamic>> list = [
-    {
-      "name": "admin",
-      "image": "assets/back2.jpg",
-      "time": "2023/04/08 12:40",
-      "text": "Hallo Student, ",
-      "post_image": "",
-      "comments": [
-        {
-          "name": "name 1",
-          "image": "assets/back2.jpg",
-          "time": "2023/04/08 12:41",
-          "text": "I'm Fine"
-        }
-      ],
-    },
-    {
-      "name": "doctor",
-      "image": "assets/back2.jpg",
-      "time": "2023/04/08 12:45",
-      "text": "Hallo Student, How are you? I'm Admin 2",
-      "post_image": "assets/back2.jpg",
-      "comments": [
-        {
-          "name": "name 1",
-          "image": "assets/back2.jpg",
-          "time": "2023/04/08 12:46",
-          "text": "I'm Fine"
-        },
-        {
-          "name": "name 2",
-          "image": "assets/back2.jpg",
-          "time": "2023/04/08 12:46",
-          "text": "I'm Fine"
-        }
-      ],
-    },
-    {
-      "name": "doctor",
-      "image": "assets/back2.jpg",
-      "time": "2023/04/08 12:50",
-      "text": "Hallo Student, How are you? I'm Admin 3",
-      "post_image": "",
-      "comments": [
-        {
-          "name": "name 1",
-          "image": "assets/back2.jpg",
-          "time": "2023/04/08 12:51",
-          "text": "I'm Fine"
-        },
-        {
-          "name": "name 2",
-          "image": "assets/back2.jpg",
-          "time": "2023/04/08 12:51",
-          "text": "I'm Fine"
-        },
-        {
-          "name": "name 3",
-          "image": "assets/back2.jpg",
-          "time": "2023/04/08 12:51",
-          "text": "I'm Fine"
-        },
-      ],
-    },
-    {
-      "name": "admin",
-      "image": "assets/back2.jpg",
-      "time": "2023/04/08 12:55",
-      "text": "Hallo Student, How are you? I'm Admin 4",
-      "post_image": "",
-      "comments": [
-        {
-          "name": "name 1",
-          "image": "assets/back2.jpg",
-          "time": "2023/04/08 12:56",
-          "text": "I'm Fine"
-        },
-        {
-          "name": "name 2",
-          "image": "assets/back2.jpg",
-          "time": "2023/04/08 12:56",
-          "text": "I'm Fine"
-        },
-        {
-          "name": "name 3",
-          "image": "assets/back2.jpg",
-          "time": "2023/04/08 12:56",
-          "text": "I'm Fine"
-        },
-        {
-          "name": "name 4",
-          "image": "assets/back2.jpg",
-          "time": "2023/04/08 12:56",
-          "text": "I'm Fine"
-        },
-      ],
-    }
-  ];
-
   List<Map<String, dynamic>> course = [
-    {
-      "course_id": "Comp 402",
-      "image": "assets/logo.png",
-    },
-    {
-      "course_id": "Comp 403",
-      "image": "assets/logo.png",
-    },
     {
       "course_id": "Comp 490",
       "image": "assets/logo.png",
     },
-    {
-      "course_id": "Comp 494",
-      "image": "assets/logo.png",
-    },
   ];
 
-  List<String> post = ["Admin", "Department"];
+  List<String> post = ["Admin", loginStudentModel!.data!.department!.capitalize()];
+
+  bool isLoading = true;
+  PostModel? postModel;
 
   int index = 0;
 
@@ -135,8 +31,30 @@ class HomeStudentCubit extends Cubit<HomeStudentStates> {
     keepPage: true,
   );
 
-  void changeIndex(int newIndex){
+  void changeIndex(int newIndex) {
     index = newIndex;
     emit(ChangeIndexStudentState());
+  }
+
+  Future<void> postOfAdmin() async {
+    try {
+      isLoading = true;
+      emit(AdminPostLoadingState());
+      DioHelper.postData(
+        url: "/api/posts/view_post_by_department_student",
+        data: {
+          'department': "admin",
+          'course_id': "admin",
+        },
+      ).then((value) {
+        postModel = PostModel.fromJson(value.data);
+        isLoading = false;
+        emit(AdminPostSuccessState());
+      }).catchError((error) {
+        print(error.toString());
+        isLoading = true;
+        emit(AdminPostErrorState());
+      });
+    } catch (e) {}
   }
 }

@@ -5,7 +5,9 @@ import 'package:graduation_project_app/layout/cubit/cubit.dart';
 import 'package:graduation_project_app/layout/cubit/states.dart';
 
 class AppScreen extends StatelessWidget {
-  const AppScreen({super.key});
+  final String userType;
+
+  const AppScreen({super.key, required this.userType});
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +17,21 @@ class AppScreen extends StatelessWidget {
       builder: (context, state) {
         AppCubit cubit = AppCubit.get(context);
         return Scaffold(
-            body: cubit.screens[cubit.bottomNavIndex], //destination screen
+            body: userType == "student"
+                ? cubit.studentScreens[cubit.bottomNavIndex]
+                : userType == "doctor"
+                    ? cubit.doctorScreens[cubit.bottomNavIndex]
+                    : cubit.adminScreens[
+                        cubit.bottomNavIndex], //destination screen
             bottomNavigationBar: FluidNavBar(
               style: FluidNavBarStyle(
-                barBackgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+                barBackgroundColor:
+                    Theme.of(context).bottomNavigationBarTheme.backgroundColor,
                 iconSelectedForegroundColor: Theme.of(context).iconTheme.color,
-                iconUnselectedForegroundColor: Theme.of(context).iconTheme.color,
-                iconBackgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+                iconUnselectedForegroundColor:
+                    Theme.of(context).iconTheme.color,
+                iconBackgroundColor:
+                    Theme.of(context).bottomNavigationBarTheme.backgroundColor,
               ),
               animationFactor: 1,
               defaultIndex: 0,
