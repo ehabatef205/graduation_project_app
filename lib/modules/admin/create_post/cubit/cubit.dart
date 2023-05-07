@@ -1,5 +1,9 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:graduation_project_app/modules/admin/create_post/cubit/states.dart';
@@ -14,11 +18,21 @@ class CreatePostCubit extends Cubit<CreatePostStates> {
   TextEditingController postNameController = TextEditingController();
   bool isLoading = false;
   XFile? image;
+  String img64 = '';
 
   void chooseImage() async {
     image = await ImagePicker().pickImage(
       source: ImageSource.gallery,
     );
+
+    File imagefile = File(image!.path);
+
+    Uint8List bytes = await imagefile.readAsBytes();
+
+    img64 = "data:image/jpeg;base64,${base64.encode(bytes)}";
+
+    print(img64);
+
     emit(ChangeImageState());
   }
 
@@ -26,69 +40,34 @@ class CreatePostCubit extends Cubit<CreatePostStates> {
     try {
       isLoading = true;
       emit(CreatePostState());
-      if(image == null){
-        DioHelper.postData(
-          url: "/api/posts/create_post",
-          data: {
-            'text': postNameController.text,
-            'image': "",
-            'department': "admin",
-            'course_id': "admin",
-            "management_id": loginManagementModel!.data!.managementId,
-            "management_name": loginManagementModel!.data!.name,
-            "management_image": loginManagementModel!.data!.image,
-          },
-        ).then((value) {
-          Fluttertoast.showToast(
-            msg: value.data["message"],
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.black.withOpacity(0.5),
-            textColor: Colors.white,
-            fontSize: 16,
-          );
-          Navigator.pop(context);
-          emit(CreatePostSuccessState());
-        }).catchError((error) {
-          print(error.toString());
-          isLoading = false;
-          emit(CreatePostErrorState());
-        });
-      }else{
-        FormData data = FormData.fromMap({
-          "image": await MultipartFile.fromFile(
-            image!.path,
-            filename: image!.path.split('/').last,
-          ),
+      DioHelper.postData(
+        url: "/api/posts/create_post",
+        data: {
           'text': postNameController.text,
+          'image': img64,
           'department': "admin",
           'course_id': "admin",
           "management_id": loginManagementModel!.data!.managementId,
           "management_name": loginManagementModel!.data!.name,
           "management_image": loginManagementModel!.data!.image,
-        });
-        DioHelper.postData(
-          url: "/api/posts/create_post",
-          data: data,
-        ).then((value) {
-          Fluttertoast.showToast(
-            msg: value.data["message"],
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.black.withOpacity(0.5),
-            textColor: Colors.white,
-            fontSize: 16,
-          );
-          Navigator.pop(context);
-          emit(CreatePostSuccessState());
-        }).catchError((error) {
-          print(error.toString());
-          isLoading = false;
-          emit(CreatePostErrorState());
-        });
-      }
+        },
+      ).then((value) {
+        Fluttertoast.showToast(
+          msg: value.data["message"],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.black.withOpacity(0.5),
+          textColor: Colors.white,
+          fontSize: 16,
+        );
+        Navigator.pop(context);
+        emit(CreatePostSuccessState());
+      }).catchError((error) {
+        print(error.toString());
+        isLoading = false;
+        emit(CreatePostErrorState());
+      });
     } catch (e) {}
   }
 }

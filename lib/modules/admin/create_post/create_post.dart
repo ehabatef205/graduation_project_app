@@ -36,29 +36,44 @@ class CreatePostScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
-                        height: 150,
-                        width: 150,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .bodyText1!
-                                    .color!,
-                                width: 2)),
-                        child: cubit.image == null
-                            ? IconButton(
-                                onPressed: () {
-                                  cubit.chooseImage();
-                                },
-                                icon: Icon(
-                                  Icons.add_photo_alternate_outlined,
-                                  color: Theme.of(context).iconTheme.color,
-                                  size: 50,
-                                ),
-                              )
-                            : Image(image: FileImage(File(cubit.image!.path))),
-                      ),
+                          height: 150,
+                          width: 150,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1!
+                                      .color!,
+                                  width: 2)),
+                          child: cubit.image == null
+                              ? IconButton(
+                                  onPressed: () {
+                                    cubit.chooseImage();
+                                  },
+                                  icon: Icon(
+                                    Icons.add_photo_alternate_outlined,
+                                    color: Theme.of(context).iconTheme.color,
+                                    size: 50,
+                                  ),
+                                )
+                              : Container(
+                                  height: 150,
+                                  width: 150,
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                        image:
+                                            FileImage(File(cubit.image!.path)),
+                                        fit: BoxFit.cover
+                                      ),
+                                      border: Border.all(
+                                          color: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1!
+                                              .color!,
+                                          width: 2)),
+                                )),
                       const SizedBox(
                         height: 10.0,
                       ),

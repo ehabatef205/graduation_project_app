@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/modules/admin/settings_admin/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/admin/settings_admin/cubit/states.dart';
+import 'package:graduation_project_app/modules/logIn/logIn_screen.dart';
 import 'package:graduation_project_app/modules/student/view_profile/view_profile_screen.dart';
 import 'package:graduation_project_app/shared/theme.dart';
 import 'package:provider/provider.dart';
@@ -91,6 +92,22 @@ class SettingsAdminScreen extends StatelessWidget {
                       ),
                     ),
                     onTap: (){
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(
+                      Icons.logout_outlined,
+                      color: Theme.of(context).textTheme.bodyText1!.color,
+                    ),
+                    title: Text(
+                      'Logout',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Theme.of(context).textTheme.bodyText1!.color,
+                      ),
+                    ),
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                     },
                   ),
                 ],

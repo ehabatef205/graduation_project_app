@@ -30,12 +30,12 @@ class ViewCourseScreen extends StatelessWidget {
                 IconButton(
                   padding: EdgeInsets.zero,
                   onPressed: () {
-                    Navigator.push(
+                    /*Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => CreateCourseScreen(),
                       ),
-                    );
+                    );*/
                   },
                   icon: Icon(
                     Icons.edit,
