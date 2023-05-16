@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/modules/admin/settings_admin/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/admin/settings_admin/cubit/states.dart';
+import 'package:graduation_project_app/modules/admin/view_student/view_student.dart';
 import 'package:graduation_project_app/modules/logIn/logIn_screen.dart';
 import 'package:graduation_project_app/modules/student/view_profile/view_profile_screen.dart';
 import 'package:graduation_project_app/shared/theme.dart';
@@ -13,12 +14,13 @@ class SettingsAdminScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(create: (BuildContext context) => SettingsAdminCubit(),
+    return BlocProvider(
+      create: (BuildContext context) => SettingsAdminCubit(),
       child: BlocConsumer<SettingsAdminCubit, SettingsAdminStates>(
-        listener: (context, state){},
-        builder: (context, state){
+        listener: (context, state) {},
+        builder: (context, state) {
           SettingsAdminCubit cubit = SettingsAdminCubit.get(context);
-          if(!cubit.isDone){
+          if (!cubit.isDone) {
             SettingsAdminCubit.get(context).readDark(context);
           }
           return Scaffold(
@@ -51,7 +53,8 @@ class SettingsAdminScreen extends StatelessWidget {
                         color: Theme.of(context).textTheme.bodyText1!.color,
                       ),
                     ),
-                    trailing: Consumer<ThemeNotifier>(builder: (context, theme, _) {
+                    trailing:
+                        Consumer<ThemeNotifier>(builder: (context, theme, _) {
                       return CupertinoSwitch(
                         value: cubit.isDark,
                         onChanged: (value) {
@@ -76,8 +79,7 @@ class SettingsAdminScreen extends StatelessWidget {
                         color: Theme.of(context).textTheme.bodyText1!.color,
                       ),
                     ),
-                    onTap: (){
-                    },
+                    onTap: () {},
                   ),
                   ListTile(
                     leading: Icon(
@@ -91,7 +93,25 @@ class SettingsAdminScreen extends StatelessWidget {
                         color: Theme.of(context).textTheme.bodyText1!.color,
                       ),
                     ),
-                    onTap: (){
+                    onTap: () {},
+                  ),
+                  ListTile(
+                    leading: Icon(
+                      Icons.account_box_outlined,
+                      color: Theme.of(context).textTheme.bodyText1!.color,
+                    ),
+                    title: Text(
+                      "View Student",
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Theme.of(context).textTheme.bodyText1!.color,
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ViewStudentScreen()));
                     },
                   ),
                   ListTile(
@@ -106,8 +126,11 @@ class SettingsAdminScreen extends StatelessWidget {
                         color: Theme.of(context).textTheme.bodyText1!.color,
                       ),
                     ),
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginScreen()));
                     },
                   ),
                 ],

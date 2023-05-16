@@ -6,12 +6,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/layout/cubit/states.dart';
 import 'package:graduation_project_app/modules/admin/create_data/create_data_screen.dart';
 import 'package:graduation_project_app/modules/admin/department/department_screen.dart';
+import 'package:graduation_project_app/modules/admin/grades/admin_grades.dart';
 import 'package:graduation_project_app/modules/admin/home_admin/home_admin_screen.dart';
 import 'package:graduation_project_app/modules/admin/settings_admin/settings_admin_screen.dart';
+import 'package:graduation_project_app/modules/doctor/doctor_grades/doctor_grades.dart';
 import 'package:graduation_project_app/modules/doctor/home_doctor/home_doctor_screen.dart';
 import 'package:graduation_project_app/modules/doctor/view_doctor_table/view_table_doctor_screen.dart';
 import 'package:graduation_project_app/modules/student/home_student/home_student_screen.dart';
 import 'package:graduation_project_app/modules/setings/settings_screen.dart';
+import 'package:graduation_project_app/modules/student/student_grades/student_grades.dart';
 import 'package:graduation_project_app/modules/student/view_table/view_table_screen.dart';
 
 class AppCubit extends Cubit<AppStates> {
@@ -24,21 +27,21 @@ class AppCubit extends Cubit<AppStates> {
   List<Widget> studentScreens = [
     const HomeStudentScreen(),
     const ViewTableScreen(),
-    const Center(child: Text("Chat Screen")),
+    const StudentGradesScreen(),
     const SettingsScreen(),
   ];
 
   List<Widget> doctorScreens = [
     const HomeDoctorScreen(),
     const ViewDoctorTableScreen(),
-    const Center(child: Text("Chat Screen")),
+    const DoctorGradesScreen(),
     const SettingsScreen(),
   ];
 
   List<Widget> adminScreens = [
     const HomeAdminScreen(),
     const DepartmentScreen(),
-    const Center(child: Text("Chat Screen")),
+    const AdminGradesScreen(),
     const SettingsAdminScreen(),
   ];
 
