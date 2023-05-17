@@ -71,55 +71,65 @@ class ViewPostsCourseScreen extends StatelessWidget {
                                   padding: const EdgeInsets.all(10),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
                                     children: [
                                       Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Container(
-                                            height: 35,
-                                            width: 35,
-                                            decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                image: DecorationImage(
-                                                    image: NetworkImage(cubit
-                                                        .postModel!
-                                                        .respone![index]
-                                                        .managementImage!),
-                                                    fit: BoxFit.fill)),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                          Row(
                                             children: [
-                                              Text(
-                                                cubit.postModel!.respone![index]
-                                                    .managementName!,
-                                                style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyText1!
-                                                      .color,
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
+                                              Container(
+                                                height: 35,
+                                                width: 35,
+                                                decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    image: DecorationImage(
+                                                        image: NetworkImage(cubit
+                                                            .postModel!
+                                                            .respone![index]
+                                                            .managementImage!),
+                                                        fit: BoxFit.fill)),
                                               ),
                                               const SizedBox(
-                                                height: 5,
+                                                width: 10,
                                               ),
-                                              Text(
-                                                cubit.postModel!.respone![index]
-                                                    .dateTime!,
-                                                style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyText1!
-                                                      .color,
-                                                ),
+                                              Column(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    cubit
+                                                        .postModel!
+                                                        .respone![index]
+                                                        .managementName!,
+                                                    style: TextStyle(
+                                                      color:
+                                                      Theme.of(context)
+                                                          .textTheme
+                                                          .bodyText1!
+                                                          .color,
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                      FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Text(
+                                                    "${cubit.postModel!.respone![index].dateTime!.split("T")[0]} ${cubit.postModel!.respone![index].dateTime!.split("T")[1].split(".")[0]}",
+                                                    style: TextStyle(
+                                                      color: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyText1!
+                                                          .color,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ],
                                           ),
@@ -143,21 +153,21 @@ class ViewPostsCourseScreen extends StatelessWidget {
                                         height: 10,
                                       ),
                                       cubit.postModel!.respone![index].image! ==
-                                              ""
+                                          ""
                                           ? const SizedBox()
                                           : Column(
-                                              children: [
-                                                Image(
-                                                  image: AssetImage(cubit
-                                                      .postModel!
-                                                      .respone![index]
-                                                      .image!),
-                                                ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
-                                              ],
-                                            ),
+                                        children: [
+                                          Image(
+                                            image: NetworkImage(cubit
+                                                .postModel!
+                                                .respone![index]
+                                                .image!),
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                        ],
+                                      ),
                                       const Divider(),
                                       Padding(
                                         padding: const EdgeInsets.all(5),
@@ -170,18 +180,17 @@ class ViewPostsCourseScreen extends StatelessWidget {
                                                 MaterialPageRoute(
                                                   builder: (context) =>
                                                       ViewCommentsScreen(
-                                                    list: cubit
-                                                        .postModel!
-                                                        .respone![index],
-                                                  ),
+                                                        list: cubit.postModel!
+                                                            .respone![index],
+                                                      ),
                                                 ),
                                               );
                                             },
                                             child: Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                              MainAxisAlignment.center,
                                               crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
+                                              CrossAxisAlignment.center,
                                               children: [
                                                 const Icon(
                                                   Icons
@@ -192,8 +201,11 @@ class ViewPostsCourseScreen extends StatelessWidget {
                                                   width: 10,
                                                 ),
                                                 Text(
-                                                  cubit.postModel!.respone![index]
-                                                      .comments!.length
+                                                  cubit
+                                                      .postModel!
+                                                      .respone![index]
+                                                      .comments!
+                                                      .length
                                                       .toString(),
                                                   style: TextStyle(
                                                     color: Theme.of(context)

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/models/post_model.dart';
+import 'package:graduation_project_app/modules/student/home_student/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/student/view_comments/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/student/view_comments/cubit/states.dart';
 import 'package:graduation_project_app/shared/components.dart';
@@ -150,6 +151,7 @@ class ViewCommentsScreen extends StatelessWidget {
                                     .trim()
                                     .isNotEmpty) {
                               cubit.sendComment();
+                              HomeStudentCubit.get(context).postOfAdmin();
                             }
                           },
                           icon: Icon(

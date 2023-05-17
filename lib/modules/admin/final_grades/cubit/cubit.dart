@@ -6,5 +6,4 @@ class FinalGradesCubit extends Cubit<FinalGradesStates>{
   FinalGradesCubit() : super(FinalGradesInitialState());
 
   static FinalGradesCubit get(context) => BlocProvider.of(context);
-  GlobalKey<FormState> keyForm = GlobalKey<FormState>();
 }

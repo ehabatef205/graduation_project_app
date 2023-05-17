@@ -1,7 +1,9 @@
 abstract class CreatePostStates {}
 
 class CreatePostInitialState extends CreatePostStates {}
+
 class ChangeState extends CreatePostStates {}
+
 class ChangeImageState extends CreatePostStates {}
 
 class CreatePostState extends CreatePostStates {}

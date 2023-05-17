@@ -20,7 +20,7 @@ class ViewPostsCourseCubit extends Cubit<ViewPostsCourseStates> {
       DioHelper.postData(
         url: "/api/posts/view_post_by_department_student",
         data: {
-          'department': loginStudentModel!.data!.department,
+          'department': student!.department,
           'course_id': courseId,
         },
       ).then((value) {

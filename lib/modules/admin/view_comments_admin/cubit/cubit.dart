@@ -28,16 +28,16 @@ class ViewCommentsAdminCubit extends Cubit<ViewCommentsAdminStates> {
         url: "/api/posts/create_comment",
         data: {
           "id": respone!.sId,
-          'user_id': loginManagementModel!.data!.managementId,
+          'user_id': management!.managementId,
           'text': commentController.text,
-          "name": loginManagementModel!.data!.name,
-          "image": loginManagementModel!.data!.image,
+          "name": management!.name,
+          "image": management!.image,
         },
       ).then((value) {
         respone!.comments!.add(Comments(
-            id: loginManagementModel!.data!.managementId,
-            name: loginManagementModel!.data!.name,
-            image: loginManagementModel!.data!.image,
+            id: management!.managementId,
+            name: management!.name,
+            image: management!.image,
             text: commentController.text, date: value.data["date"]));
         isSend = false;
         commentController.clear();

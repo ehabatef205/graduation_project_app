@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/modules/doctor/home_doctor/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/doctor/home_doctor/cubit/states.dart';
 import 'package:graduation_project_app/modules/doctor/view_posts_course_doctor/view_posts_course_doctor_screen.dart';
+import 'package:graduation_project_app/shared/constant.dart';
 
 class HomeDoctorScreen extends StatelessWidget {
   const HomeDoctorScreen({Key? key}) : super(key: key);
@@ -28,17 +29,17 @@ class HomeDoctorScreen extends StatelessWidget {
                           Container(
                             height: 50,
                             width: 50,
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 image: DecorationImage(
-                                    image: AssetImage("assets/back2.jpg"),
+                                    image: NetworkImage(management!.image!),
                                     fit: BoxFit.fill)),
                           ),
                           const SizedBox(
                             width: 10,
                           ),
                           Text(
-                            "Doctor name",
+                            management!.name!,
                             style: TextStyle(
                               color:
                                   Theme.of(context).textTheme.bodyText2!.color,
@@ -54,7 +55,7 @@ class HomeDoctorScreen extends StatelessWidget {
                       child: GridView.builder(
                         shrinkWrap: true,
                         gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           childAspectRatio: 0.8,
                         ),
@@ -64,11 +65,15 @@ class HomeDoctorScreen extends StatelessWidget {
                             padding: const EdgeInsets.all(5),
                             child: Container(
                               decoration: BoxDecoration(
-                                color: Theme.of(context)
-                                    .scaffoldBackgroundColor,
+                                color:
+                                    Theme.of(context).scaffoldBackgroundColor,
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.2),
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .bodyText1!
+                                        .color!
+                                        .withOpacity(0.2),
                                     spreadRadius: 1,
                                     blurRadius: 4,
                                     offset: const Offset(0, 0),
@@ -83,15 +88,14 @@ class HomeDoctorScreen extends StatelessWidget {
                                     MaterialPageRoute(
                                       builder: (context) =>
                                           ViewPostsCourseDoctorScreen(
-                                            course_id: cubit.course[index]
+                                        course_id: cubit.course[index]
                                             ["course_id"],
-                                          ),
+                                      ),
                                     ),
                                   );
                                 },
                                 child: Column(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Image(
                                       image: AssetImage(

@@ -1,7 +1,7 @@
 class LoginStudentModel {
   String? userType;
   String? message;
-  Data? data;
+  Student? data;
   String? token;
 
   LoginStudentModel({this.userType, this.message, this.data, this.token});
@@ -9,23 +9,23 @@ class LoginStudentModel {
   LoginStudentModel.fromJson(Map<String, dynamic> json) {
     userType = json['user_type'];
     message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Student.fromJson(json['data']) : null;
     token = json['token'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['user_type'] = this.userType;
-    data['message'] = this.message;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['user_type'] = userType;
+    data['message'] = message;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
-    data['token'] = this.token;
+    data['token'] = token;
     return data;
   }
 }
 
-class Data {
+class Student {
   String? sId;
   String? studentId;
   String? name;
@@ -46,7 +46,7 @@ class Data {
   List<dynamic>? registerd;
   int? iV;
 
-  Data(
+  Student(
       {this.sId,
       this.studentId,
       this.name,
@@ -67,7 +67,7 @@ class Data {
       this.registerd,
       this.iV});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  Student.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     studentId = json['student_id'];
     name = json['name'];
@@ -90,28 +90,28 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['student_id'] = this.studentId;
-    data['name'] = this.name;
-    data['email'] = this.email;
-    data['password'] = this.password;
-    data['birth_day'] = this.birthDay;
-    data['image'] = this.image;
-    data['phone'] = this.phone;
-    data['mobile'] = this.mobile;
-    data['level'] = this.level;
-    data['join_date'] = this.joinDate;
-    data['last_login'] = this.lastLogin;
-    data['NAT_id'] = this.nATId;
-    data['address'] = this.address;
-    data['department'] = this.department;
-    data['HS_score'] = this.hSScore;
-    data['user_type'] = this.userType;
-    if (this.registerd != null) {
-      data['registerd'] = this.registerd!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = sId;
+    data['student_id'] = studentId;
+    data['name'] = name;
+    data['email'] = email;
+    data['password'] = password;
+    data['birth_day'] = birthDay;
+    data['image'] = image;
+    data['phone'] = phone;
+    data['mobile'] = mobile;
+    data['level'] = level;
+    data['join_date'] = joinDate;
+    data['last_login'] = lastLogin;
+    data['NAT_id'] = nATId;
+    data['address'] = address;
+    data['department'] = department;
+    data['HS_score'] = hSScore;
+    data['user_type'] = userType;
+    if (registerd != null) {
+      data['registerd'] = registerd!.map((v) => v.toJson()).toList();
     }
-    data['__v'] = this.iV;
+    data['__v'] = iV;
     return data;
   }
 }

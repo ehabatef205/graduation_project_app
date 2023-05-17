@@ -28,16 +28,16 @@ class ViewCommentsDoctorCubit extends Cubit<ViewCommentsDoctorStates> {
         url: "/api/posts/create_comment",
         data: {
           "id": respone!.sId,
-          'user_id': loginStudentModel!.data!.studentId,
+          'user_id': management!.managementId,
           'text': commentController.text,
-          "name": loginStudentModel!.data!.name,
-          "image": loginStudentModel!.data!.image,
+          "name": management!.name,
+          "image": management!.image,
         },
       ).then((value) {
         respone!.comments!.add(Comments(
-            id: loginStudentModel!.data!.studentId,
-            name: loginStudentModel!.data!.name,
-            image: loginStudentModel!.data!.image,
+            id: management!.managementId,
+            name: management!.name,
+            image: management!.image,
             text: commentController.text, date: value.data["date"]));
         isSend = false;
         commentController.clear();

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project_app/models/department_model.dart';
 import 'package:graduation_project_app/modules/admin/create_course/create_course.dart';
 import 'package:graduation_project_app/modules/admin/courses/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/admin/courses/cubit/states.dart';
 import 'package:graduation_project_app/modules/admin/create_department/create_department.dart';
+import 'package:graduation_project_app/modules/admin/update_department/update_department.dart';
 import 'package:graduation_project_app/modules/admin/view_course/view_course.dart';
 import 'package:graduation_project_app/shared/color.dart';
 
 class CoursesScreen extends StatelessWidget {
-  final String department;
+  final Respone department;
 
   const CoursesScreen({Key? key, required this.department}) : super(key: key);
 
@@ -17,7 +19,7 @@ class CoursesScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return BlocProvider(
         create: (BuildContext context) =>
-            CoursesCubit()..getCourses(department: department),
+            CoursesCubit()..getCourses(department: department.departmentId!),
         child: BlocConsumer<CoursesCubit, CoursesStates>(
           listener: (context, state) {},
           builder: (context, state) {
@@ -26,7 +28,7 @@ class CoursesScreen extends StatelessWidget {
               appBar: AppBar(
                 elevation: 0,
                 title: Text(
-                  department,
+                  department.departmentId!,
                   style: TextStyle(
                     fontSize: 20.0,
                     color: Theme.of(context).textTheme.bodyText1!.color,
@@ -39,7 +41,7 @@ class CoursesScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => CreateCourseScreen(department: department),
+                          builder: (context) => CreateCourseScreen(department: department.departmentId!),
                         ),
                       );
                     },
@@ -54,7 +56,7 @@ class CoursesScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => CreateDepartmentScreen(),
+                          builder: (context) => UpdateDepartmentScreen(respone: department),
                         ),
                       );
                     },
@@ -68,7 +70,7 @@ class CoursesScreen extends StatelessWidget {
               body: SafeArea(
                 child: RefreshIndicator(
                   onRefresh: () {
-                    return cubit.getCourses(department: department);
+                    return cubit.getCourses(department: department.departmentId!);
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(5),
@@ -113,7 +115,7 @@ class CoursesScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              ViewCourseScreen(),
+                                              ViewCourseScreen(course: cubit.courses!.respone![index]),
                                         ),
                                       );
                                     },

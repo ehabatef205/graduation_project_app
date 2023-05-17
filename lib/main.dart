@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/MyBlocObserver.dart';
-import 'package:graduation_project_app/modules/setings/cubit/cubit.dart';
+import 'package:graduation_project_app/modules/admin/home_admin/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/splash/splash_screen.dart';
+import 'package:graduation_project_app/modules/student/home_student/cubit/cubit.dart';
 import 'package:graduation_project_app/shared/network/dio_helper.dart';
 import 'package:graduation_project_app/shared/theme.dart';
 import 'package:provider/provider.dart';
-
 import 'layout/cubit/cubit.dart';
 import 'layout/cubit/states.dart';
 
@@ -29,6 +29,12 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => AppCubit(),
+        ),
+        BlocProvider(
+          create: (BuildContext context) => HomeAdminCubit()..postOfAdmin(),
+        ),
+        BlocProvider(
+          create: (BuildContext context) => HomeStudentCubit()..postOfAdmin(),
         ),
       ],
       child: BlocConsumer<AppCubit, AppStates>(

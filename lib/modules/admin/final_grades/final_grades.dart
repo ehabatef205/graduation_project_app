@@ -17,7 +17,6 @@ class FinalGradesScreen extends StatelessWidget {
             FinalGradesCubit cubit = FinalGradesCubit.get(context);
             return Scaffold(
               appBar: AppBar(
-                elevation: 0,
                 title: Text(
                   "Final Grades",
                   style: TextStyle(

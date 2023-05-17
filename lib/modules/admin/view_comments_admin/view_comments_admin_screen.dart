@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/models/post_model.dart';
+import 'package:graduation_project_app/modules/admin/home_admin/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/admin/view_comments_admin/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/admin/view_comments_admin/cubit/states.dart';
 import 'package:graduation_project_app/shared/components.dart';
@@ -144,12 +145,15 @@ class ViewCommentsAdminScreen extends StatelessWidget {
                           ),
                         ),
                         IconButton(
-                          onPressed: () {
+                          onPressed: () async{
                             if (cubit.commentController.text.isNotEmpty &&
                                 cubit.commentController.text
                                     .trim()
                                     .isNotEmpty) {
-                              cubit.sendComment();
+                              await cubit.sendComment().whenComplete(() async{
+
+                              });
+                              HomeAdminCubit.get(context).postOfAdmin();
                             }
                           },
                           icon: Icon(

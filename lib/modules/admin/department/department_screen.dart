@@ -21,7 +21,6 @@ class DepartmentScreen extends StatelessWidget {
             return Scaffold(
               appBar: AppBar(
                 leading: const SizedBox(),
-                elevation: 0,
                 title: Text(
                   "Departments",
                   style: TextStyle(
@@ -96,7 +95,7 @@ class DepartmentScreen extends StatelessWidget {
                                         MaterialPageRoute(
                                           builder: (context) => CoursesScreen(
                                             department: cubit.departments!
-                                                .respone![index].departmentId!,
+                                                .respone![index],
                                           ),
                                         ),
                                       );

@@ -41,7 +41,7 @@ class ViewCommentsDoctorScreen extends StatelessWidget {
                             child: Container(
                               decoration: BoxDecoration(
                                 color:
-                                    Theme.of(context).scaffoldBackgroundColor,
+                                Theme.of(context).scaffoldBackgroundColor,
                                 borderRadius: BorderRadius.circular(10),
                                 boxShadow: [
                                   BoxShadow(
@@ -79,9 +79,9 @@ class ViewCommentsDoctorScreen extends StatelessWidget {
                                         ),
                                         Column(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.start,
+                                          MainAxisAlignment.start,
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                           children: [
                                             Text(
                                               list.comments![index].name!,

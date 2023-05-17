@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:graduation_project_app/layout/app_layout.dart';
 import 'package:graduation_project_app/models/login_management_model.dart';
 import 'package:graduation_project_app/models/login_student_model.dart';
@@ -33,20 +34,36 @@ class LoginCubit extends Cubit<LoginStates> {
           'password': passwordController.text,
         },
       ).then((value) {
-        if (value.data["user_type"] == "student") {
-          loginStudentModel = LoginStudentModel.fromJson(value.data);
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      AppScreen(userType: loginStudentModel!.userType!)));
-        } else {
-          loginManagementModel = LoginManagementModel.fromJson(value.data);
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      AppScreen(userType: loginManagementModel!.userType!)));
+        if(value.data["message"] == "Id or password is invalid"){
+          Fluttertoast.showToast(
+            msg: value.data["message"],
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.black.withOpacity(0.5),
+            textColor: Colors.white,
+            fontSize: 16,
+          );
+          isLoading = false;
+          emit(LoginErrorState());
+        }else{
+          if (value.data["user_type"] == "student") {
+            loginStudentModel = LoginStudentModel.fromJson(value.data);
+            student = Student.fromJson(value.data["data"]);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        AppScreen(userType: loginStudentModel!.userType!)));
+          } else {
+            loginManagementModel = LoginManagementModel.fromJson(value.data);
+            management = Management.fromJson(value.data["data"]);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        AppScreen(userType: management!.userType!)));
+          }
         }
         emit(LoginSuccessState());
       }).catchError((error) {

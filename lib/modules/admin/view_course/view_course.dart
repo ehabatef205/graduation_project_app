@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project_app/models/course_model.dart';
 import 'package:graduation_project_app/modules/admin/create_course/create_course.dart';
+import 'package:graduation_project_app/modules/admin/update_course/update_course.dart';
 import 'package:graduation_project_app/modules/admin/view_course/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/admin/view_course/cubit/states.dart';
 
 class ViewCourseScreen extends StatelessWidget {
-  const ViewCourseScreen({Key? key}) : super(key: key);
+  final Respone course;
+  const ViewCourseScreen({Key? key, required this.course}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +33,12 @@ class ViewCourseScreen extends StatelessWidget {
                 IconButton(
                   padding: EdgeInsets.zero,
                   onPressed: () {
-                    /*Navigator.push(
+                    Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => CreateCourseScreen(),
+                        builder: (context) => UpdateCourseScreen(course: course),
                       ),
-                    );*/
+                    );
                   },
                   icon: Icon(
                     Icons.edit,
@@ -56,10 +59,10 @@ class ViewCourseScreen extends StatelessWidget {
                         child: Container(
                           height: 150,
                           width: 150,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                              image: AssetImage("assets/back2.jpg"),
+                              image: NetworkImage(course.image!),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -70,7 +73,7 @@ class ViewCourseScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Course ID : 1827060',
+                            'Course ID : ${course.courseId}',
                             style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
@@ -79,7 +82,7 @@ class ViewCourseScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 10.0,),
                           Text(
-                            'Course Name : cs402',
+                            'Course Name : ${course.courseName}',
                             style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
@@ -88,7 +91,7 @@ class ViewCourseScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 10.0,),
                           Text(
-                            'Course Description : compilers',
+                            'Course Description : ${course.courseDescription}',
                             style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
@@ -97,7 +100,7 @@ class ViewCourseScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 10.0,),
                           Text(
-                            'Course Credit : 3',
+                            'Course Credit : ${course.courseCredit}',
                             style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
@@ -106,7 +109,7 @@ class ViewCourseScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 10.0,),
                           Text(
-                            'Department : CS',
+                            'Department : ${course.department}',
                             style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
@@ -115,7 +118,7 @@ class ViewCourseScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 10.0,),
                           Text(
-                            'Course Level : 2',
+                            'Course Level : ${course.courseLevel}',
                             style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,

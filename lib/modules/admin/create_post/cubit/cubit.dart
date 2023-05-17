@@ -47,9 +47,9 @@ class CreatePostCubit extends Cubit<CreatePostStates> {
           'image': img64,
           'department': "admin",
           'course_id': "admin",
-          "management_id": loginManagementModel!.data!.managementId,
-          "management_name": loginManagementModel!.data!.name,
-          "management_image": loginManagementModel!.data!.image,
+          "management_id": management!.managementId,
+          "management_name": management!.name,
+          "management_image": management!.image,
         },
       ).then((value) {
         Fluttertoast.showToast(
