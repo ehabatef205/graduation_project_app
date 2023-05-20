@@ -6,7 +6,7 @@ class DioHelper {
   static init() {
     dio = Dio(
       BaseOptions(
-          baseUrl: 'https://spring-bud-cricket-veil.cyclic.app',
+          baseUrl: 'https://confused-bat-stole.cyclic.app',
           receiveDataWhenStatusError: true,
           headers: {
             'Content-Type': 'application/json',
