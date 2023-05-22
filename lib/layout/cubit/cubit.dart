@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/layout/cubit/states.dart';
+import 'package:graduation_project_app/models/login_student_model.dart';
 import 'package:graduation_project_app/modules/admin/department/department_screen.dart';
 import 'package:graduation_project_app/modules/admin/grades/admin_grades.dart';
 import 'package:graduation_project_app/modules/admin/home_admin/home_admin_screen.dart';
@@ -16,6 +17,8 @@ import 'package:graduation_project_app/modules/student/home_student/home_student
 import 'package:graduation_project_app/modules/student/settings/settings_screen.dart';
 import 'package:graduation_project_app/modules/student/student_grades/student_grades.dart';
 import 'package:graduation_project_app/modules/student/view_table/view_table_screen.dart';
+import 'package:graduation_project_app/shared/constant.dart';
+import 'package:graduation_project_app/shared/network/dio_helper.dart';
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialState());
@@ -65,5 +68,20 @@ class AppCubit extends Cubit<AppStates> {
   void changeIndex(int newIndex) {
     bottomNavIndex = newIndex;
     emit(ChangeIndexState());
+  }
+
+  void getData() {
+    emit(LoadingAccountState());
+
+    DioHelper.getData(url: "/api/students/getstudentByToken", token: token)
+        .then((value) {
+      student = Student.fromJson(value.data["data"]);
+      emit(SuccessAccountState());
+    }).catchError((error) {
+      print(error.toString());
+      emit(ErrorAccountState());
+    });
+
+    emit(FinalAccountState());
   }
 }

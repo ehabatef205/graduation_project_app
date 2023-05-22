@@ -12,14 +12,7 @@ class HomeStudentCubit extends Cubit<HomeStudentStates> {
 
   static HomeStudentCubit get(context) => BlocProvider.of(context);
 
-  List<Map<String, dynamic>> course = [
-    {
-      "course_id": "Comp 490",
-      "image": "assets/logo.png",
-    },
-  ];
-
-  List<String> post = ["Admin", loginStudentModel!.data!.department!.capitalize()];
+  List<String> post = ["Admin", student!.department!.capitalize()];
 
   bool isLoading = true;
   PostModel? postModel;

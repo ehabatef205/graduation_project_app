@@ -41,7 +41,7 @@ class Data {
   String? department;
   int? hSScore;
   String? userType;
-  List<String>? registerd;
+  List<dynamic>? register;
   int? iV;
 
   Data(
@@ -61,7 +61,7 @@ class Data {
         this.department,
         this.hSScore,
         this.userType,
-        this.registerd,
+        this.register,
         this.iV});
 
   Data.fromJson(Map<String, dynamic> json) {
@@ -81,7 +81,7 @@ class Data {
     department = json['department'];
     hSScore = json['HS_score'];
     userType = json['user_type'];
-    registerd = json['registerd'].cast<String>();
+    register = json['register'].cast<String>();
     iV = json['__v'];
   }
 
@@ -103,8 +103,53 @@ class Data {
     data['department'] = department;
     data['HS_score'] = hSScore;
     data['user_type'] = userType;
-    data['registerd'] = registerd;
+    data['register'] = register;
     data['__v'] = iV;
+    return data;
+  }
+}
+
+class Register {
+  String? courseId;
+  String? image;
+  int? groupNumber;
+  int? numberOfRegistration;
+  bool? registrationCurrent;
+  bool? pass;
+  String? time;
+  String? sId;
+
+  Register(
+      {this.courseId,
+        this.image,
+        this.groupNumber,
+        this.numberOfRegistration,
+        this.registrationCurrent,
+        this.pass,
+        this.time,
+        this.sId});
+
+  Register.fromJson(Map<String, dynamic> json) {
+    courseId = json['course_id'];
+    image = json['image'];
+    groupNumber = json['group_number'];
+    numberOfRegistration = json['number_of_registration'];
+    registrationCurrent = json['registration_current'];
+    pass = json['pass'];
+    time = json['time'];
+    sId = json['_id'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['course_id'] = courseId;
+    data['image'] = image;
+    data['group_number'] = groupNumber;
+    data['number_of_registration'] = numberOfRegistration;
+    data['registration_current'] = registrationCurrent;
+    data['pass'] = pass;
+    data['time'] = time;
+    data['_id'] = sId;
     return data;
   }
 }

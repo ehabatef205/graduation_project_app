@@ -8,3 +8,5 @@ Student? student;
 Management? management;
 
 LoginManagementModel? loginManagementModel;
+
+String? token;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project_app/models/login_student_model.dart';
 import 'package:graduation_project_app/modules/student/home_student/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/student/home_student/cubit/states.dart';
 import 'package:graduation_project_app/modules/student/view_comments/view_comments_screen.dart';
@@ -22,8 +23,7 @@ class HomeStudentScreen extends StatelessWidget {
             child: Column(
               children: [
                 Padding(
-                  padding:
-                      const EdgeInsets.only(left: 10, right: 10, top: 10),
+                  padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
                   child: Row(
                     children: [
                       Container(
@@ -32,17 +32,17 @@ class HomeStudentScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                                image: NetworkImage(loginStudentModel!.data!.image!),
+                                image: NetworkImage(
+                                    student!.image!),
                                 fit: BoxFit.fill)),
                       ),
                       const SizedBox(
                         width: 10,
                       ),
                       Text(
-                        loginStudentModel!.data!.name!,
+                        student!.name!,
                         style: TextStyle(
-                          color:
-                              Theme.of(context).textTheme.bodyText2!.color,
+                          color: Theme.of(context).textTheme.bodyText2!.color,
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                         ),
@@ -97,180 +97,209 @@ class HomeStudentScreen extends StatelessWidget {
                         onRefresh: () {
                           return cubit.postOfAdmin();
                         },
-                        child: cubit.isLoading? Center(child: CircularProgressIndicator(color: colorButton,),) : ListView.builder(
-                          itemCount: cubit.postModel!.respone!.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.only(
-                                  bottom: 5, top: 5, left: 10, right: 10),
-                              child: Container(
-                                width: size.width,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Theme.of(context)
-                                      .scaffoldBackgroundColor,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.2),
-                                      spreadRadius: 1,
-                                      blurRadius: 4,
-                                      offset: const Offset(0, 0),
-                                    ),
-                                  ],
+                        child: cubit.isLoading
+                            ? Center(
+                                child: CircularProgressIndicator(
+                                  color: colorButton,
                                 ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Container(
-                                            height: 35,
-                                            width: 35,
-                                            decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                image: DecorationImage(
-                                                    image: NetworkImage(
-                                                        cubit.postModel!.respone![index].managementImage!),
-                                                    fit: BoxFit.fill)),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          Column(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                cubit.postModel!.respone![index].managementName!,
-                                                style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyText1!
-                                                      .color,
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                height: 5,
-                                              ),
-                                              Text(
-                                                "${cubit.postModel!.respone![index].dateTime!.split("T")[0]} ${cubit.postModel!.respone![index].dateTime!.split("T")[1].split(".")[0]}",
-                                                style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyText1!
-                                                      .color,
-                                                ),
-                                              ),
-                                            ],
+                              )
+                            : ListView.builder(
+                                itemCount: cubit.postModel!.respone!.length,
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(
+                                        bottom: 5, top: 5, left: 10, right: 10),
+                                    child: Container(
+                                      width: size.width,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Theme.of(context)
+                                            .scaffoldBackgroundColor,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1!
+                                                .color!
+                                                .withOpacity(0.2),
+                                            spreadRadius: 1,
+                                            blurRadius: 4,
+                                            offset: const Offset(0, 0),
                                           ),
                                         ],
                                       ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        cubit.postModel!.respone![index].text!,
-                                        style: TextStyle(
-                                          color: Theme.of(context)
-                                              .textTheme
-                                              .bodyText1!
-                                              .color,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      cubit.postModel!.respone![index].image! == ""
-                                          ? const SizedBox()
-                                          : Column(
-                                        children: [
-                                          Image(
-                                            image: NetworkImage(
-                                                cubit.postModel!.respone![index].image!),
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                        ],
-                                      ),
-                                      const Divider(),
-                                      Padding(
-                                        padding: const EdgeInsets.all(5),
-                                        child: SizedBox(
-                                          width: size.width,
-                                          child: InkWell(
-                                            onTap: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ViewCommentsScreen(
-                                                        list: cubit.postModel!.respone![index],
-                                                      ),
-                                                ),
-                                              );
-                                            },
-                                            child: Row(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.center,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
                                               children: [
-                                                const Icon(
-                                                  Icons
-                                                      .messenger_outline_outlined,
-                                                  size: 20,
+                                                Container(
+                                                  height: 35,
+                                                  width: 35,
+                                                  decoration: BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      image: DecorationImage(
+                                                          image: NetworkImage(cubit
+                                                              .postModel!
+                                                              .respone![index]
+                                                              .managementImage!),
+                                                          fit: BoxFit.fill)),
                                                 ),
                                                 const SizedBox(
                                                   width: 10,
                                                 ),
-                                                Text(
-                                                  cubit
-                                                      .postModel!.respone![index].comments!
-                                                      .length
-                                                      .toString(),
-                                                  style: TextStyle(
-                                                    color: Theme.of(context)
-                                                        .textTheme
-                                                        .bodyText1!
-                                                        .color,
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Text(
-                                                  "Comments",
-                                                  style: TextStyle(
-                                                    color: Theme.of(context)
-                                                        .textTheme
-                                                        .bodyText1!
-                                                        .color,
-                                                  ),
+                                                Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      cubit
+                                                          .postModel!
+                                                          .respone![index]
+                                                          .managementName!,
+                                                      style: TextStyle(
+                                                        color: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyText1!
+                                                            .color,
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Text(
+                                                      "${cubit.postModel!.respone![index].dateTime!.split("T")[0]} ${cubit.postModel!.respone![index].dateTime!.split("T")[1].split(".")[0]}",
+                                                      style: TextStyle(
+                                                        color: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyText1!
+                                                            .color,
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ],
                                             ),
-                                          ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text(
+                                              cubit.postModel!.respone![index]
+                                                  .text!,
+                                              style: TextStyle(
+                                                color: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyText1!
+                                                    .color,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            cubit.postModel!.respone![index]
+                                                        .image! ==
+                                                    ""
+                                                ? const SizedBox()
+                                                : Column(
+                                                    children: [
+                                                      Image(
+                                                        image: NetworkImage(
+                                                            cubit
+                                                                .postModel!
+                                                                .respone![index]
+                                                                .image!),
+                                                      ),
+                                                      const SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                    ],
+                                                  ),
+                                            const Divider(),
+                                            Padding(
+                                              padding: const EdgeInsets.all(5),
+                                              child: SizedBox(
+                                                width: size.width,
+                                                child: InkWell(
+                                                  onTap: () {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            ViewCommentsScreen(
+                                                          list: cubit.postModel!
+                                                              .respone![index],
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      const Icon(
+                                                        Icons
+                                                            .messenger_outline_outlined,
+                                                        size: 20,
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 10,
+                                                      ),
+                                                      Text(
+                                                        cubit
+                                                            .postModel!
+                                                            .respone![index]
+                                                            .comments!
+                                                            .length
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyText1!
+                                                                  .color,
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 10,
+                                                      ),
+                                                      Text(
+                                                        "Comments",
+                                                        style: TextStyle(
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyText1!
+                                                                  .color,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          ],
                                         ),
-                                      )
-                                    ],
-                                  ),
-                                ),
+                                      ),
+                                    ),
+                                  );
+                                },
                               ),
-                            );
-                          },
-                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(5),
@@ -281,61 +310,81 @@ class HomeStudentScreen extends StatelessWidget {
                             crossAxisCount: 2,
                             childAspectRatio: 0.8,
                           ),
-                          itemCount: cubit.course.length,
+                          itemCount: student!.register!.length,
                           itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.all(5),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Theme.of(context)
-                                      .scaffoldBackgroundColor,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.2),
-                                      spreadRadius: 1,
-                                      blurRadius: 4,
-                                      offset: const Offset(0, 0),
+                            Register register = Register.fromJson(student!
+                                .register![index]);
+                            return register.registrationCurrent!
+                                ? Padding(
+                                    padding: const EdgeInsets.all(5),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Theme.of(context)
+                                            .scaffoldBackgroundColor,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1!
+                                                .color!
+                                                .withOpacity(0.2),
+                                            spreadRadius: 1,
+                                            blurRadius: 4,
+                                            offset: const Offset(0, 0),
+                                          ),
+                                        ],
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  ViewPostsCourseScreen(
+                                                courseId: register.courseId!,
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Expanded(
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                      const BorderRadius.only(
+                                                          topLeft:
+                                                          Radius.circular(10),
+                                                          topRight:
+                                                          Radius.circular(10)),
+                                                      image: DecorationImage(
+                                                          image: NetworkImage(
+                                                            register.image!,
+                                                          ),
+                                                          fit: BoxFit.cover)),
+                                                )),
+                                            const SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              register.courseId!,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText1!
+                                                  .copyWith(fontSize: 16),
+                                            ),
+                                            const SizedBox(
+                                              height: 5,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ),
-                                  ],
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            ViewPostsCourseScreen(
-                                              courseId: cubit.course[index]
-                                              ["course_id"],
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.center,
-                                    children: [
-                                      Image(
-                                        image: AssetImage(
-                                          cubit.course[index]["image"],
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text(
-                                        cubit.course[index]["course_id"],
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText1!
-                                            .copyWith(fontSize: 16),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            );
+                                  )
+                                : const SizedBox();
                           },
                         ),
                       ),

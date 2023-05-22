@@ -34,7 +34,7 @@ class LoginCubit extends Cubit<LoginStates> {
           'password': passwordController.text,
         },
       ).then((value) {
-        if(value.data["message"] == "Id or password is invalid"){
+        if (value.data["message"] == "Id or password is invalid") {
           Fluttertoast.showToast(
             msg: value.data["message"],
             toastLength: Toast.LENGTH_SHORT,
@@ -46,10 +46,11 @@ class LoginCubit extends Cubit<LoginStates> {
           );
           isLoading = false;
           emit(LoginErrorState());
-        }else{
+        } else {
           if (value.data["user_type"] == "student") {
             loginStudentModel = LoginStudentModel.fromJson(value.data);
             student = Student.fromJson(value.data["data"]);
+            token = loginStudentModel!.token;
             Navigator.push(
                 context,
                 MaterialPageRoute(
