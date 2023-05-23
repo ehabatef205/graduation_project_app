@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/modules/doctor/view_doctor_table/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/doctor/view_doctor_table/cubit/states.dart';
+import 'package:graduation_project_app/shared/color.dart';
 
 class ViewDoctorTableScreen extends StatelessWidget {
   const ViewDoctorTableScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     Color? color1 = Theme.of(context).textTheme.bodyText1!.color;
     Color? color2 = Theme.of(context).textTheme.bodyText2!.color;
     Color? color3 = Theme.of(context).textTheme.headline1!.color;
@@ -16,39 +18,45 @@ class ViewDoctorTableScreen extends StatelessWidget {
     Color? color6 = Theme.of(context).textTheme.headline4!.color;
     Color? color7 = Theme.of(context).textTheme.headline5!.color;
     Color? color8 = Theme.of(context).textTheme.headline6!.color;
+    List<Color> colors = [
+      color2!,
+      color3!,
+      color4!,
+      color5!,
+      color6!,
+      color7!,
+      color8!
+    ];
     Color? coloWhite = Colors.white;
-
     return BlocProvider(
-      create: (BuildContext context) => ViewDoctorTableCubit(),
+      create: (BuildContext context) => ViewDoctorTableCubit()..getGroups(),
       child: BlocConsumer<ViewDoctorTableCubit, ViewDoctorTableStates>(
         listener: (context, state) {},
-        builder: (context, state){
+        builder: (context, state) {
           ViewDoctorTableCubit cubit = ViewDoctorTableCubit.get(context);
           return Scaffold(
-            body: SafeArea(
-              child: SingleChildScrollView(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Center(
-                        child: Icon(
-                          Icons.date_range_sharp,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Center(
-                        child: Text(
-                          "Courses",
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                            color: color1,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
+            appBar: AppBar(
+              leading: const SizedBox(),
+              title: Text(
+                "My Courses",
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: Theme.of(context).textTheme.bodyText1!.color,
+                ),
+              ),
+              centerTitle: true,
+            ),
+            body: cubit.isLoading
+                ? Center(
+                    child: CircularProgressIndicator(
+                      color: colorButton,
+                    ),
+                  )
+                : SingleChildScrollView(
+                    child: Column(children: [
                       Padding(
-                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          padding: const EdgeInsets.only(
+                              left: 10, right: 10, top: 10),
                           child: SizedBox(
                             height: 1000,
                             child: Row(
@@ -60,18 +68,13 @@ class ViewDoctorTableScreen extends StatelessWidget {
                                       width: 80,
                                       alignment: Alignment.center,
                                       decoration: BoxDecoration(
-                                        border: BorderDirectional(
-                                          top: BorderSide(width: 0.5 , color: color1!),
-                                          bottom: BorderSide(width: 0.5 , color: color1!),
-                                          start: BorderSide(width: 0.5 , color: color1!),
-                                        ),
-                                      ),
+                                          border: Border.all(
+                                              width: 0.5, color: color1!)),
                                       child: Text(
                                         "Date/Time",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            color: color1
-                                        ),
+                                            color: color1),
                                       ),
                                     ),
                                     Container(
@@ -79,7 +82,10 @@ class ViewDoctorTableScreen extends StatelessWidget {
                                       width: 80,
                                       decoration: BoxDecoration(
                                         border: BorderDirectional(
-                                          start: BorderSide(width: 0.5 , color: color1!),
+                                          start: BorderSide(
+                                              width: 0.5, color: color1),
+                                          end: BorderSide(
+                                              width: 0.5, color: color1),
                                         ),
                                       ),
                                       alignment: Alignment.center,
@@ -96,7 +102,10 @@ class ViewDoctorTableScreen extends StatelessWidget {
                                       width: 80,
                                       decoration: BoxDecoration(
                                         border: BorderDirectional(
-                                          start: BorderSide(width: 0.5 , color: color1!),
+                                          start: BorderSide(
+                                              width: 0.5, color: color1),
+                                          end: BorderSide(
+                                              width: 0.5, color: color1),
                                         ),
                                       ),
                                       alignment: Alignment.center,
@@ -104,8 +113,7 @@ class ViewDoctorTableScreen extends StatelessWidget {
                                         cubit.time[1],
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            color: color1
-                                        ),
+                                            color: color1),
                                       ),
                                     ),
                                     Container(
@@ -113,7 +121,10 @@ class ViewDoctorTableScreen extends StatelessWidget {
                                       width: 80,
                                       decoration: BoxDecoration(
                                         border: BorderDirectional(
-                                          start: BorderSide(width: 0.5 , color: color1!),
+                                          start: BorderSide(
+                                              width: 0.5, color: color1),
+                                          end: BorderSide(
+                                              width: 0.5, color: color1),
                                         ),
                                       ),
                                       alignment: Alignment.center,
@@ -130,7 +141,10 @@ class ViewDoctorTableScreen extends StatelessWidget {
                                       width: 80,
                                       decoration: BoxDecoration(
                                         border: BorderDirectional(
-                                          start: BorderSide(width: 0.5 , color: color1!),
+                                          start: BorderSide(
+                                              width: 0.5, color: color1),
+                                          end: BorderSide(
+                                              width: 0.5, color: color1),
                                         ),
                                       ),
                                       alignment: Alignment.center,
@@ -147,7 +161,10 @@ class ViewDoctorTableScreen extends StatelessWidget {
                                       width: 80,
                                       decoration: BoxDecoration(
                                         border: BorderDirectional(
-                                          start: BorderSide(width: 0.5 , color: color1!),
+                                          start: BorderSide(
+                                              width: 0.5, color: color1),
+                                          end: BorderSide(
+                                              width: 0.5, color: color1),
                                         ),
                                       ),
                                       alignment: Alignment.center,
@@ -164,7 +181,10 @@ class ViewDoctorTableScreen extends StatelessWidget {
                                       width: 80,
                                       decoration: BoxDecoration(
                                         border: BorderDirectional(
-                                          start: BorderSide(width: 0.5 , color: color1!),
+                                          start: BorderSide(
+                                              width: 0.5, color: color1),
+                                          end: BorderSide(
+                                              width: 0.5, color: color1),
                                         ),
                                       ),
                                       alignment: Alignment.center,
@@ -181,8 +201,12 @@ class ViewDoctorTableScreen extends StatelessWidget {
                                       width: 80,
                                       decoration: BoxDecoration(
                                         border: BorderDirectional(
-                                          start: BorderSide(width: 0.5 , color: color1!),
-                                          bottom: BorderSide(width: 0.5 , color: color1!),
+                                          start: BorderSide(
+                                              width: 0.5, color: color1),
+                                          end: BorderSide(
+                                              width: 0.5, color: color1),
+                                          bottom: BorderSide(
+                                              width: 0.5, color: color1),
                                         ),
                                       ),
                                       alignment: Alignment.center,
@@ -205,16 +229,19 @@ class ViewDoctorTableScreen extends StatelessWidget {
                                           children: [
                                             Container(
                                               height: 80,
-                                              width: 80,
+                                              width: 120,
                                               alignment: Alignment.center,
                                               decoration: BoxDecoration(
                                                   border: BorderDirectional(
-                                                    top: BorderSide(width: 0.5 , color: color1!),
-                                                    start: BorderSide(width: 0.5 , color: color1!),
-                                                    end: BorderSide(width: 0.5 , color: color1!),
-                                                    bottom: BorderSide(width: 0.5 , color: color1!),
-                                                  )
-                                              ),
+                                                top: BorderSide(
+                                                    width: 0.5, color: color1),
+                                                start: BorderSide(
+                                                    width: 0.5, color: color1),
+                                                end: BorderSide(
+                                                    width: 0.5, color: color1),
+                                                bottom: BorderSide(
+                                                    width: 0.5, color: color1),
+                                              )),
                                               child: Text(
                                                 cubit.days[index],
                                                 style: TextStyle(
@@ -223,68 +250,85 @@ class ViewDoctorTableScreen extends StatelessWidget {
                                                 ),
                                               ),
                                             ),
-                                            buildContainerData(
-                                              "Math",
-                                              2,
-                                              "10",
-                                              color2!,
-                                              color1!,
-                                              coloWhite!,
-                                              0,
-                                            ),
-                                            buildContainerData(
-                                              "Math",
-                                              2,
-                                              "10",
-                                              color3!,
-                                              color1!,
-                                              coloWhite!,
-                                              0,
-                                            ),
-                                            buildContainerData(
-                                              "Math",
-                                              2,
-                                              "10",
-                                              color4!,
-                                              color1!,
-                                              coloWhite!,
-                                              0,
-                                            ),
-                                            buildContainerData(
-                                              "Math",
-                                              2,
-                                              "10",
-                                              color5!,
-                                              color1!,
-                                              coloWhite!,
-                                              0,
-                                            ),
-                                            buildContainerData(
-                                              "Math",
-                                              2,
-                                              "10",
-                                              color6!,
-                                              color1!,
-                                              coloWhite!,
-                                              0,
-                                            ),
-                                            buildContainerData(
-                                              "Math",
-                                              2,
-                                              "10",
-                                              color7!,
-                                              color1!,
-                                              coloWhite!,
-                                              0,
-                                            ),
-                                            buildContainerData(
-                                              "Math",
-                                              2,
-                                              "10",
-                                              color8!,
-                                              color1!,
-                                              coloWhite!,
-                                              -1,
+                                            SizedBox(
+                                              height: 900,
+                                              width: 120,
+                                              child: ListView.builder(
+                                                  physics:
+                                                      const NeverScrollableScrollPhysics(),
+                                                  itemCount:
+                                                      cubit.list[index].length,
+                                                  itemBuilder:
+                                                      (context, index2) {
+                                                    if (cubit.list[index]
+                                                            [index2] ==
+                                                        "") {
+                                                      if (index2 ==
+                                                          cubit.list[index]
+                                                                  .length -
+                                                              1) {
+                                                        return Container(
+                                                          height: 120,
+                                                          width: 120,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                                  border:
+                                                                      BorderDirectional(
+                                                            start: BorderSide(
+                                                                width: 0.5,
+                                                                color: color1),
+                                                            end: BorderSide(
+                                                                width: 0.5,
+                                                                color: color1),
+                                                            bottom: BorderSide(
+                                                                width: 0.5,
+                                                                color: color1),
+                                                          )),
+                                                        );
+                                                      } else {
+                                                        return Container(
+                                                          height: 120,
+                                                          width: 120,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                                  border:
+                                                                      BorderDirectional(
+                                                            start: BorderSide(
+                                                                width: 0.5,
+                                                                color: color1),
+                                                            end: BorderSide(
+                                                                width: 0.5,
+                                                                color: color1),
+                                                          )),
+                                                        );
+                                                      }
+                                                    } else {
+                                                      if (index2 ==
+                                                          cubit.list[index]
+                                                                  .length -
+                                                              1) {
+                                                        return buildContainerData(
+                                                            text: cubit
+                                                                    .list[index]
+                                                                [index2],
+                                                            color:
+                                                                colors[index2],
+                                                            color1: color1,
+                                                            color2: coloWhite,
+                                                            end: -1);
+                                                      } else {
+                                                        return buildContainerData(
+                                                            text: cubit
+                                                                    .list[index]
+                                                                [index2],
+                                                            color:
+                                                                colors[index2],
+                                                            color1: color1,
+                                                            color2: coloWhite,
+                                                            end: 0);
+                                                      }
+                                                    }
+                                                  }),
                                             ),
                                           ],
                                         );
@@ -294,29 +338,32 @@ class ViewDoctorTableScreen extends StatelessWidget {
                             ),
                           )),
                     ]),
-              ),
-            ),
+                  ),
           );
         },
       ),
     );
   }
 
-  Widget buildContainerData(String name , int group , String place , Color color , Color color1 , Color color2, int end){
-    if(end != -1){
+  Widget buildContainerData(
+      {required String text,
+      required Color color,
+      required Color color1,
+      required Color color2,
+      required int end}) {
+    if (end != -1) {
       return Container(
         height: 120,
-        width: 80,
+        width: 120,
         alignment: Alignment.center,
         decoration: BoxDecoration(
             border: BorderDirectional(
-              start: BorderSide(width: 0.5 , color: color1),
-              end: BorderSide(width: 0.5 , color: color1),
-            )
-        ),
+          start: BorderSide(width: 0.5, color: color1),
+          end: BorderSide(width: 0.5, color: color1),
+        )),
         child: Container(
           height: 100,
-          width: 70,
+          width: 100,
           alignment: Alignment.center,
           padding: const EdgeInsets.all(5.0),
           clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -325,28 +372,26 @@ class ViewDoctorTableScreen extends StatelessWidget {
             color: color,
           ),
           child: Text(
-            "${name} \n ${group} \n ${place}",
-            style: TextStyle(
-                color: color2
-            ),
+            "$text",
+            style: TextStyle(color: color2),
+            textAlign: TextAlign.center,
           ),
         ),
       );
-    }else{
+    } else {
       return Container(
         height: 120,
-        width: 80,
+        width: 120,
         alignment: Alignment.center,
         decoration: BoxDecoration(
             border: BorderDirectional(
-              start: BorderSide(width: 0.5 , color: color1),
-              end: BorderSide(width: 0.5 , color: color1),
-              bottom: BorderSide(width: 0.5 , color: color1),
-            )
-        ),
+          start: BorderSide(width: 0.5, color: color1),
+          end: BorderSide(width: 0.5, color: color1),
+          bottom: BorderSide(width: 0.5, color: color1),
+        )),
         child: Container(
           height: 100,
-          width: 70,
+          width: 100,
           alignment: Alignment.center,
           padding: const EdgeInsets.all(5.0),
           clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -355,10 +400,8 @@ class ViewDoctorTableScreen extends StatelessWidget {
             color: color,
           ),
           child: Text(
-            "${name} \n ${group} \n ${place}",
-            style: TextStyle(
-                color: color2
-            ),
+            "$text",
+            style: TextStyle(color: color2),
           ),
         ),
       );
