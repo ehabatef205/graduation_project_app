@@ -8,6 +8,7 @@ import 'package:graduation_project_app/modules/student/settings/cubit/states.dar
 import 'package:graduation_project_app/modules/student/view_profile_student/view_profile_student_screen.dart';
 import 'package:graduation_project_app/shared/theme.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -88,13 +89,15 @@ class SettingsScreen extends StatelessWidget {
                       color: Theme.of(context).iconTheme.color,
                     ),
                     title: Text(
-                      'Connect us',
+                      'Contact us',
                       style: TextStyle(
                         fontSize: 18,
                         color: Theme.of(context).textTheme.bodyText1!.color,
                       ),
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      cubit.send();
+                    },
                   ),
                   ListTile(
                     leading: Icon(
@@ -108,12 +111,20 @@ class SettingsScreen extends StatelessWidget {
                         color: Theme.of(context).textTheme.bodyText1!.color,
                       ),
                     ),
-                    onTap: () {
-                      AppCubit.get(context).changeIndex(0);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LoginScreen()));
+                    onTap: () async{
+                      final SharedPreferences sharedPreferences =
+                          await SharedPreferences.getInstance();
+
+                      await sharedPreferences.remove("user_type");
+                      await sharedPreferences.remove("password");
+
+                      await sharedPreferences.remove("token").whenComplete(() async{
+                        AppCubit.get(context).changeIndex(0);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LoginScreen()));
+                      });
                     },
                   ),
                 ],

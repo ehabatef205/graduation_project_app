@@ -58,7 +58,7 @@ class ViewDoctorTableScreen extends StatelessWidget {
                           padding: const EdgeInsets.only(
                               left: 10, right: 10, top: 10),
                           child: SizedBox(
-                            height: 1000,
+                            height: 820,
                             child: Row(
                               children: [
                                 Column(
@@ -90,7 +90,7 @@ class ViewDoctorTableScreen extends StatelessWidget {
                                       ),
                                       alignment: Alignment.center,
                                       child: Text(
-                                        cubit.time[0],
+                                        cubit.days[0],
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: color1,
@@ -110,7 +110,7 @@ class ViewDoctorTableScreen extends StatelessWidget {
                                       ),
                                       alignment: Alignment.center,
                                       child: Text(
-                                        cubit.time[1],
+                                        cubit.days[1],
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: color1),
@@ -129,7 +129,7 @@ class ViewDoctorTableScreen extends StatelessWidget {
                                       ),
                                       alignment: Alignment.center,
                                       child: Text(
-                                        cubit.time[2],
+                                        cubit.days[2],
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: color1,
@@ -149,7 +149,7 @@ class ViewDoctorTableScreen extends StatelessWidget {
                                       ),
                                       alignment: Alignment.center,
                                       child: Text(
-                                        cubit.time[3],
+                                        cubit.days[3],
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: color1,
@@ -169,27 +169,7 @@ class ViewDoctorTableScreen extends StatelessWidget {
                                       ),
                                       alignment: Alignment.center,
                                       child: Text(
-                                        cubit.time[4],
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: color1,
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      height: 120,
-                                      width: 80,
-                                      decoration: BoxDecoration(
-                                        border: BorderDirectional(
-                                          start: BorderSide(
-                                              width: 0.5, color: color1),
-                                          end: BorderSide(
-                                              width: 0.5, color: color1),
-                                        ),
-                                      ),
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        cubit.time[5],
+                                        cubit.days[4],
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: color1,
@@ -211,7 +191,7 @@ class ViewDoctorTableScreen extends StatelessWidget {
                                       ),
                                       alignment: Alignment.center,
                                       child: Text(
-                                        cubit.time[6],
+                                        cubit.days[5],
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: color1,
@@ -222,7 +202,7 @@ class ViewDoctorTableScreen extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: ListView.builder(
-                                      itemCount: cubit.days.length,
+                                      itemCount: cubit.time.length,
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, index) {
                                         return Column(
@@ -241,9 +221,8 @@ class ViewDoctorTableScreen extends StatelessWidget {
                                                     width: 0.5, color: color1),
                                                 bottom: BorderSide(
                                                     width: 0.5, color: color1),
-                                              )),
-                                              child: Text(
-                                                cubit.days[index],
+                                              )), child: Text(
+                                                cubit.time[index],
                                                 style: TextStyle(
                                                   color: color1,
                                                   fontWeight: FontWeight.bold,
@@ -251,7 +230,7 @@ class ViewDoctorTableScreen extends StatelessWidget {
                                               ),
                                             ),
                                             SizedBox(
-                                              height: 900,
+                                              height: 720,
                                               width: 120,
                                               child: ListView.builder(
                                                   physics:

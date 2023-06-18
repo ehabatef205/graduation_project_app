@@ -10,3 +10,7 @@ Management? management;
 LoginManagementModel? loginManagementModel;
 
 String? token;
+
+String? password;
+
+String? userType;

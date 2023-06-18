@@ -9,7 +9,7 @@ import 'package:graduation_project_app/shared/color.dart';
 import 'package:graduation_project_app/shared/components.dart';
 
 class UpdateCourseScreen extends StatelessWidget {
-  final Respone course;
+  final Course course;
 
   const UpdateCourseScreen({Key? key, required this.course})
       : super(key: key);

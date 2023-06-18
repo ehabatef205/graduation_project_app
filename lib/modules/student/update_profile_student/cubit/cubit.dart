@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:graduation_project_app/layout/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/student/update_profile_student/cubit/states.dart';
+import 'package:graduation_project_app/modules/student/view_profile_student/view_profile_student_screen.dart';
 import 'package:graduation_project_app/shared/constant.dart';
 import 'package:graduation_project_app/shared/network/dio_helper.dart';
 import 'package:image_picker/image_picker.dart';
@@ -76,7 +78,12 @@ class UpdateProfileStudentCubit extends Cubit<UpdateProfileStudentStates> {
           textColor: Colors.white,
           fontSize: 16,
         );
-        Navigator.pop(context);
+        AppCubit.get(context).getData().whenComplete(() {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ViewProfileStudentScreen()));
+        });
         emit(UpdateSuccessState());
       }).catchError((error) {
         print(error.toString());

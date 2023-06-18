@@ -7,6 +7,7 @@ import 'package:graduation_project_app/models/login_student_model.dart';
 import 'package:graduation_project_app/modules/logIn/cubit/states.dart';
 import 'package:graduation_project_app/shared/constant.dart';
 import 'package:graduation_project_app/shared/network/dio_helper.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginCubit extends Cubit<LoginStates> {
   LoginCubit() : super(LoginInitialState());
@@ -23,7 +24,7 @@ class LoginCubit extends Cubit<LoginStates> {
     emit(ChangeState());
   }
 
-  void userLogin({required BuildContext context}) {
+  void userLogin({required BuildContext context}) async {
     try {
       isLoading = true;
       emit(LoginLoadingState());
@@ -33,7 +34,7 @@ class LoginCubit extends Cubit<LoginStates> {
           'id': idController.text,
           'password': passwordController.text,
         },
-      ).then((value) {
+      ).then((value) async {
         if (value.data["message"] == "Id or password is invalid") {
           Fluttertoast.showToast(
             msg: value.data["message"],
@@ -51,19 +52,50 @@ class LoginCubit extends Cubit<LoginStates> {
             loginStudentModel = LoginStudentModel.fromJson(value.data);
             student = Student.fromJson(value.data["data"]);
             token = loginStudentModel!.token;
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        AppScreen(userType: loginStudentModel!.userType!)));
+            final SharedPreferences sharedPreferences =
+                await SharedPreferences.getInstance();
+
+            await sharedPreferences
+                .setString("user_type", value.data["user_type"]);
+
+            await sharedPreferences
+                .setString("password", passwordController.text);
+
+            await sharedPreferences
+                .setString("token", token!)
+                .whenComplete(() async {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => AppScreen(
+                            userType: loginStudentModel!.userType!,
+                            indexOfScreen: 0,
+                          )));
+            });
           } else {
             loginManagementModel = LoginManagementModel.fromJson(value.data);
             management = Management.fromJson(value.data["data"]);
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        AppScreen(userType: management!.userType!)));
+            token = loginManagementModel!.token;
+            final SharedPreferences sharedPreferences =
+                await SharedPreferences.getInstance();
+
+            await sharedPreferences
+                .setString("password", passwordController.text);
+
+            await sharedPreferences
+                .setString("user_type", value.data["user_type"]);
+
+            await sharedPreferences
+                .setString("token", token!)
+                .whenComplete(() async {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => AppScreen(
+                            userType: management!.userType!,
+                            indexOfScreen: 0,
+                          )));
+            });
           }
         }
         emit(LoginSuccessState());

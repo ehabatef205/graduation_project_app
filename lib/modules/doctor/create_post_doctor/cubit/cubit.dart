@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:graduation_project_app/modules/doctor/create_post_doctor/cubit/states.dart';
+import 'package:graduation_project_app/modules/doctor/view_posts_course_doctor/view_posts_course_doctor_screen.dart';
 import 'package:graduation_project_app/shared/constant.dart';
 import 'package:graduation_project_app/shared/network/dio_helper.dart';
 import 'package:image_picker/image_picker.dart';
@@ -60,7 +61,7 @@ class CreatePostDoctorCubit extends Cubit<CreatePostDoctorStates> {
           textColor: Colors.white,
           fontSize: 16,
         );
-        Navigator.pop(context);
+        Navigator.push(context, MaterialPageRoute(builder: (context) => ViewPostsCourseDoctorScreen(course_id: courseId)));
         emit(CreatePostSuccessState());
       }).catchError((error) {
         print(error.toString());

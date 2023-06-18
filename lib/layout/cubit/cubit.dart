@@ -3,7 +3,9 @@ import 'package:fluid_bottom_nav_bar/fluid_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project_app/layout/app_layout.dart';
 import 'package:graduation_project_app/layout/cubit/states.dart';
+import 'package:graduation_project_app/models/login_management_model.dart';
 import 'package:graduation_project_app/models/login_student_model.dart';
 import 'package:graduation_project_app/modules/admin/department/department_screen.dart';
 import 'package:graduation_project_app/modules/admin/grades/admin_grades.dart';
@@ -70,12 +72,21 @@ class AppCubit extends Cubit<AppStates> {
     emit(ChangeIndexState());
   }
 
-  void getData() {
+  Future<void> getData() async {
     emit(LoadingAccountState());
 
-    DioHelper.getData(url: "/api/students/getstudentByToken", token: token)
-        .then((value) {
-      student = Student.fromJson(value.data["data"]);
+    print(token);
+    DioHelper.getData(url: "/api/get_data_with_token", token: token)
+        .then((value) async{
+      if (value.data["user_type"] == "student") {
+        loginStudentModel = LoginStudentModel.fromJson(value.data);
+        student = Student.fromJson(value.data["data"]);
+        token = loginStudentModel!.token;
+      } else {
+        loginManagementModel = LoginManagementModel.fromJson(value.data);
+        management = Management.fromJson(value.data["data"]);
+        token = loginManagementModel!.token;
+      }
       emit(SuccessAccountState());
     }).catchError((error) {
       print(error.toString());

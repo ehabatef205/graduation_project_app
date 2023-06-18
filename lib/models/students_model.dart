@@ -46,23 +46,23 @@ class Data {
 
   Data(
       {this.sId,
-        this.studentId,
-        this.name,
-        this.email,
-        this.birthDay,
-        this.image,
-        this.phone,
-        this.mobile,
-        this.level,
-        this.joinDate,
-        this.lastLogin,
-        this.nATId,
-        this.address,
-        this.department,
-        this.hSScore,
-        this.userType,
-        this.register,
-        this.iV});
+      this.studentId,
+      this.name,
+      this.email,
+      this.birthDay,
+      this.image,
+      this.phone,
+      this.mobile,
+      this.level,
+      this.joinDate,
+      this.lastLogin,
+      this.nATId,
+      this.address,
+      this.department,
+      this.hSScore,
+      this.userType,
+      this.register,
+      this.iV});
 
   Data.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -117,17 +117,19 @@ class Register {
   bool? registrationCurrent;
   bool? pass;
   String? time;
+  String? finalGrad;
   String? sId;
 
   Register(
       {this.courseId,
-        this.image,
-        this.groupNumber,
-        this.numberOfRegistration,
-        this.registrationCurrent,
-        this.pass,
-        this.time,
-        this.sId});
+      this.image,
+      this.groupNumber,
+      this.numberOfRegistration,
+      this.registrationCurrent,
+      this.pass,
+      this.time,
+      this.finalGrad,
+      this.sId});
 
   Register.fromJson(Map<String, dynamic> json) {
     courseId = json['course_id'];
@@ -137,6 +139,7 @@ class Register {
     registrationCurrent = json['registration_current'];
     pass = json['pass'];
     time = json['time'];
+    finalGrad = json['final_grad'];
     sId = json['_id'];
   }
 
@@ -149,6 +152,7 @@ class Register {
     data['registration_current'] = registrationCurrent;
     data['pass'] = pass;
     data['time'] = time;
+    data['final_grad'] = finalGrad;
     data['_id'] = sId;
     return data;
   }

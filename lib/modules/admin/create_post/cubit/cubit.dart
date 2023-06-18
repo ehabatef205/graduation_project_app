@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:graduation_project_app/layout/app_layout.dart';
 import 'package:graduation_project_app/modules/admin/create_post/cubit/states.dart';
 import 'package:graduation_project_app/shared/constant.dart';
 import 'package:graduation_project_app/shared/network/dio_helper.dart';
@@ -36,7 +37,7 @@ class CreatePostCubit extends Cubit<CreatePostStates> {
     emit(ChangeImageState());
   }
 
-  Future<void> addPost({required BuildContext context}) async{
+  Future<void> addPost({required BuildContext context}) async {
     try {
       isLoading = true;
       emit(CreatePostState());
@@ -61,7 +62,11 @@ class CreatePostCubit extends Cubit<CreatePostStates> {
           textColor: Colors.white,
           fontSize: 16,
         );
-        Navigator.pop(context);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => AppScreen(
+                    userType: management!.userType!, indexOfScreen: 0)));
         emit(CreatePostSuccessState());
       }).catchError((error) {
         print(error.toString());

@@ -2,9 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:graduation_project_app/layout/app_layout.dart';
+import 'package:graduation_project_app/layout/cubit/cubit.dart';
 import 'package:graduation_project_app/models/course_model.dart';
 import 'package:graduation_project_app/models/groups_model.dart';
 import 'package:graduation_project_app/modules/student/register_course/cubit/states.dart';
+import 'package:graduation_project_app/modules/student/view_table/cubit/cubit.dart';
 import 'package:graduation_project_app/shared/constant.dart';
 import 'package:graduation_project_app/shared/network/dio_helper.dart';
 
@@ -60,9 +63,9 @@ class RegisterCourseCubit extends Cubit<RegisterCourseStates> {
           url: "/api/course/view_course_by_department",
           data: {"department": student!.department}).then((value) {
         courses = CourseModel.fromJson(value.data);
-        for (int i = 0; i < courses!.respone!.length; i++) {
-          if (courses!.respone![i].courseLevel == student!.level) {
-            coursesId.add(courses!.respone![i].courseId!);
+        for (int i = 0; i < courses!.course!.length; i++) {
+          if (courses!.course![i].courseLevel == student!.level) {
+            coursesId.add(courses!.course![i].courseId!);
           }
         }
         isLoading = false;
@@ -119,7 +122,7 @@ class RegisterCourseCubit extends Cubit<RegisterCourseStates> {
         );
         isLoading2 = false;
         if (value.data["message"] == "Done Register") {
-          Navigator.pop(context);
+          AppCubit.get(context).getData();
         }
         emit(CourseSuccessState());
       }).catchError((error) {
@@ -133,7 +136,8 @@ class RegisterCourseCubit extends Cubit<RegisterCourseStates> {
   Future<void> unregisterCourse(
       {required int index,
       required String course_id,
-      required int group_number}) async {
+      required int group_number,
+      required BuildContext context}) async {
     try {
       emit(CourseLoadingState());
       DioHelper.deleteData(

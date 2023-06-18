@@ -29,6 +29,9 @@ class Respone {
   int? groupNumber;
   int? numberOfStudent;
   List<String>? students;
+  List<dynamic>? quizzes;
+  List<dynamic>? assignments;
+  List<dynamic>? midterms;
   int? iV;
 
   Respone(
@@ -39,6 +42,9 @@ class Respone {
         this.groupNumber,
         this.numberOfStudent,
         this.students,
+        this.quizzes,
+        this.assignments,
+        this.midterms,
         this.iV});
 
   Respone.fromJson(Map<String, dynamic> json) {
@@ -51,6 +57,9 @@ class Respone {
     groupNumber = json['group_number'];
     numberOfStudent = json['number_of_student'];
     students = json['students'].cast<String>();
+    quizzes = json['quizzes'].cast<List<dynamic>>();
+    assignments = json['assignments'].cast<List<dynamic>>();
+    midterms = json['midterms'].cast<List<dynamic>>();
     iV = json['__v'];
   }
 
@@ -67,6 +76,9 @@ class Respone {
     data['group_number'] = groupNumber;
     data['number_of_student'] = numberOfStudent;
     data['students'] = students;
+    data['quizzes'] = quizzes;
+    data['assignments'] = assignments;
+    data['midterms'] = midterms;
     data['__v'] = iV;
     return data;
   }

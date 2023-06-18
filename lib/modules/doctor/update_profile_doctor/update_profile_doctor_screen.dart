@@ -18,6 +18,15 @@ class UpdateProfileDoctorScreen extends StatelessWidget {
         builder: (context, state) {
           UpdateProfileDoctorCubit cubit = UpdateProfileDoctorCubit.get(context);
           return Scaffold(
+            appBar: AppBar(
+              title: Text(
+                "Update Profile",
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: Theme.of(context).textTheme.bodyText1!.color,
+                ),
+              ),
+            ),
             body: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.all(10),

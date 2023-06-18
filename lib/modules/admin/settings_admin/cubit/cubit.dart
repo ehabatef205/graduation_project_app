@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:graduation_project_app/modules/admin/settings_admin/cubit/states.dart';
 import 'package:graduation_project_app/shared/theme.dart';
 import 'package:provider/provider.dart';
@@ -32,5 +33,23 @@ class SettingsAdminCubit extends Cubit<SettingsAdminStates> {
         isDone = false;
         emit(ChangeModeState());
     });
+  }
+
+  Future<void> send() async {
+    final Email email = Email(
+      body: "",
+      subject: "",
+      recipients: ["ehabmahmoud205@gmail.com"],
+    );
+
+    String platformResponse;
+
+    try {
+      await FlutterEmailSender.send(email);
+      platformResponse = 'success';
+    } catch (error) {
+      print(error);
+      platformResponse = error.toString();
+    }
   }
 }

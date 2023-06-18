@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/modules/doctor/home_doctor/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/doctor/home_doctor/cubit/states.dart';
 import 'package:graduation_project_app/modules/doctor/view_posts_course_doctor/view_posts_course_doctor_screen.dart';
+import 'package:graduation_project_app/shared/color.dart';
 import 'package:graduation_project_app/shared/constant.dart';
 
 class HomeDoctorScreen extends StatelessWidget {
@@ -12,13 +13,13 @@ class HomeDoctorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return BlocProvider(
-        create: (BuildContext context) => HomeDoctorCubit(),
+        create: (BuildContext context) => HomeDoctorCubit()..getGroups(),
         child: BlocConsumer<HomeDoctorCubit, HomeDoctorStates>(
           listener: (context, state) {},
           builder: (context, state) {
             HomeDoctorCubit cubit = HomeDoctorCubit.get(context);
             return Scaffold(
-              body: SafeArea(
+              body: cubit.isLoading? Center(child: CircularProgressIndicator(color: colorButton,),) : SafeArea(
                 child: Column(
                   children: [
                     Padding(
@@ -59,7 +60,7 @@ class HomeDoctorScreen extends StatelessWidget {
                           crossAxisCount: 2,
                           childAspectRatio: 0.8,
                         ),
-                        itemCount: cubit.course.length,
+                        itemCount: cubit.courses.length,
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: const EdgeInsets.all(5),
@@ -88,8 +89,7 @@ class HomeDoctorScreen extends StatelessWidget {
                                     MaterialPageRoute(
                                       builder: (context) =>
                                           ViewPostsCourseDoctorScreen(
-                                        course_id: cubit.course[index]
-                                            ["course_id"],
+                                        course_id: cubit.courses[index].courseId!,
                                       ),
                                     ),
                                   );
@@ -97,16 +97,18 @@ class HomeDoctorScreen extends StatelessWidget {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Image(
-                                      image: AssetImage(
-                                        cubit.course[index]["image"],
+                                    Expanded(
+                                      child: Image(
+                                        image: NetworkImage(
+                                          cubit.courses[index].image!,
+                                        ),
                                       ),
                                     ),
                                     const SizedBox(
                                       width: 10,
                                     ),
                                     Text(
-                                      cubit.course[index]["course_id"],
+                                      cubit.courses[index].courseId!,
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyText1!

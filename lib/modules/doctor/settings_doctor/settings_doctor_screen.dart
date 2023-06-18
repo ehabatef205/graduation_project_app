@@ -9,6 +9,7 @@ import 'package:graduation_project_app/modules/admin/view_students/view_student.
 import 'package:graduation_project_app/modules/logIn/logIn_screen.dart';
 import 'package:graduation_project_app/shared/theme.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsDoctorScreen extends StatelessWidget {
   const SettingsDoctorScreen({Key? key}) : super(key: key);
@@ -44,7 +45,8 @@ class SettingsDoctorScreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const ViewProfileDoctorScreen()));
+                              builder: (context) =>
+                                  const ViewProfileDoctorScreen()));
                     },
                   ),
                   ListTile(
@@ -88,31 +90,14 @@ class SettingsDoctorScreen extends StatelessWidget {
                       color: Theme.of(context).iconTheme.color,
                     ),
                     title: Text(
-                      'Connect us',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Theme.of(context).textTheme.bodyText1!.color,
-                      ),
-                    ),
-                    onTap: () {},
-                  ),
-                  ListTile(
-                    leading: Icon(
-                      Icons.account_box_outlined,
-                      color: Theme.of(context).iconTheme.color,
-                    ),
-                    title: Text(
-                      "View Student",
+                      'Contact us',
                       style: TextStyle(
                         fontSize: 18,
                         color: Theme.of(context).textTheme.bodyText1!.color,
                       ),
                     ),
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ViewStudentsScreen()));
+                      cubit.send();
                     },
                   ),
                   ListTile(
@@ -127,12 +112,22 @@ class SettingsDoctorScreen extends StatelessWidget {
                         color: Theme.of(context).textTheme.bodyText1!.color,
                       ),
                     ),
-                    onTap: () {
-                      AppCubit.get(context).changeIndex(0);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LoginScreen()));
+                    onTap: () async {
+                      final SharedPreferences sharedPreferences =
+                          await SharedPreferences.getInstance();
+
+                      await sharedPreferences.remove("user_type");
+                      await sharedPreferences.remove("password");
+
+                      await sharedPreferences
+                          .remove("token")
+                          .whenComplete(() async {
+                        AppCubit.get(context).changeIndex(0);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LoginScreen()));
+                      });
                     },
                   ),
                 ],

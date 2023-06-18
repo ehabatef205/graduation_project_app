@@ -32,7 +32,7 @@ class UpdateCourseCubit extends Cubit<UpdateCourseStates> {
     emit(ChangeLevelState());
   }
 
-  void completeText({required Respone respone}) {
+  void completeText({required Course respone}) {
     courseIdController.text = respone.courseId!;
     courseNameController.text = respone.courseName!;
     courseDesController.text = respone.courseDescription!;

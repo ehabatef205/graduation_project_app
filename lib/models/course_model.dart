@@ -1,27 +1,27 @@
 class CourseModel {
-  List<Respone>? respone;
+  List<Course>? course;
 
-  CourseModel({this.respone});
+  CourseModel({this.course});
 
   CourseModel.fromJson(Map<String, dynamic> json) {
     if (json['respone'] != null) {
-      respone = <Respone>[];
+      course = <Course>[];
       json['respone'].forEach((v) {
-        respone!.add(new Respone.fromJson(v));
+        course!.add(Course.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.respone != null) {
-      data['respone'] = this.respone!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (course != null) {
+      data['respone'] = course!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
-class Respone {
+class Course {
   String? sId;
   String? courseId;
   String? courseName;
@@ -32,7 +32,7 @@ class Respone {
   String? courseLevel;
   int? iV;
 
-  Respone(
+  Course(
       {this.sId,
         this.courseId,
         this.courseName,
@@ -43,7 +43,7 @@ class Respone {
         this.image,
         this.iV});
 
-  Respone.fromJson(Map<String, dynamic> json) {
+  Course.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     courseId = json['course_id'];
     courseName = json['course_name'];
