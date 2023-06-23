@@ -29,24 +29,156 @@ class StudentGradesScreen extends StatelessWidget {
                   ),
                 ),
                 centerTitle: true,
-              ),
-              body: Padding(
-                padding: const EdgeInsets.all(5),
-                child: GridView.builder(
-                  shrinkWrap: true,
-                  gridDelegate:
-                  const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 0.8,
+                actions: [
+                  IconButton(
+                    onPressed: () {
+                      cubit.changeView();
+                    },
+                    icon: Icon(
+                      Icons.auto_graph_rounded,
+                      color: Theme.of(context).iconTheme.color,
+                    ),
                   ),
-                  itemCount: student!.register!.length,
-                  itemBuilder: (context, index) {
-                    Register register = Register.fromJson(student!
-                        .register![index]);
-                    return register.registrationCurrent!
-                        ? Padding(
+                ],
+              ),
+              body: cubit.isView
+                  ? Padding(
                       padding: const EdgeInsets.all(5),
-                      child: Container(
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: student!.register!.length,
+                        itemBuilder: (context, index) {
+                          Register register =
+                              Register.fromJson(student!.register![index]);
+                          return !register.registrationCurrent!
+                              ? Padding(
+                                  padding: const EdgeInsets.all(5),
+                                  child: ListTile(
+                                    title: Text(
+                                      register.courseId!,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1!
+                                          .copyWith(fontSize: 16),
+                                    ),
+                                    trailing: Text(
+                                      register.finalGrad!,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1!
+                                          .copyWith(fontSize: 16),
+                                    ),
+                                    leading: Container(
+                                      width: 25,
+                                      height: 25,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          image: DecorationImage(
+                                              image: NetworkImage(
+                                                  register.image!))),
+                                    ),
+                                  ),
+                                )
+                              : const SizedBox();
+                        },
+                      ),
+                    )
+                  : Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: GridView.builder(
+                        shrinkWrap: true,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 0.8,
+                        ),
+                        itemCount: student!.register!.length,
+                        itemBuilder: (context, index) {
+                          Register register =
+                              Register.fromJson(student!.register![index]);
+                          return register.registrationCurrent!
+                              ? Padding(
+                                  padding: const EdgeInsets.all(5),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Theme.of(context)
+                                          .scaffoldBackgroundColor,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1!
+                                              .color!
+                                              .withOpacity(0.2),
+                                          spreadRadius: 1,
+                                          blurRadius: 4,
+                                          offset: const Offset(0, 0),
+                                        ),
+                                      ],
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                StudentExamsScreen(
+                                                    register: register),
+                                          ),
+                                        );
+                                      },
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Expanded(
+                                              child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    const BorderRadius.only(
+                                                        topLeft:
+                                                            Radius.circular(10),
+                                                        topRight:
+                                                            Radius.circular(
+                                                                10)),
+                                                image: DecorationImage(
+                                                    image: NetworkImage(
+                                                      register.image!,
+                                                    ),
+                                                    fit: BoxFit.cover)),
+                                          )),
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Text(
+                                            register.courseId!,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1!
+                                                .copyWith(fontSize: 16),
+                                          ),
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : const SizedBox();
+                        },
+                      ),
+                    ),
+            );
+          }),
+    );
+  }
+}
+
+/*
+Container(
                         decoration: BoxDecoration(
                           color: Theme.of(context)
                               .scaffoldBackgroundColor,
@@ -108,14 +240,5 @@ class StudentGradesScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                      ),
-                    )
-                        : const SizedBox();
-                  },
-                ),
-              ),
-            );
-          }),
-    );
-  }
-}
+                      )
+ */

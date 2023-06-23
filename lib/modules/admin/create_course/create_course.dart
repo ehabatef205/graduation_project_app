@@ -2,13 +2,14 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project_app/models/department_model.dart';
 import 'package:graduation_project_app/modules/admin/create_course/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/admin/create_course/cubit/states.dart';
 import 'package:graduation_project_app/shared/color.dart';
 import 'package:graduation_project_app/shared/components.dart';
 
 class CreateCourseScreen extends StatelessWidget {
-  final String department;
+  final Respone department;
 
   const CreateCourseScreen({Key? key, required this.department})
       : super(key: key);
@@ -150,7 +151,8 @@ class CreateCourseScreen extends StatelessWidget {
                             padding: const EdgeInsets.all(2.0),
                             child: Container(
                               decoration: BoxDecoration(
-                                color: Theme.of(context).scaffoldBackgroundColor,
+                                color:
+                                    Theme.of(context).scaffoldBackgroundColor,
                                 border: Border.all(color: Colors.white),
                                 borderRadius: BorderRadius.circular(25),
                               ),
@@ -245,7 +247,8 @@ class CreateCourseScreen extends StatelessWidget {
                                 ),
                                 child: MaterialButton(
                                   onPressed: () {
-                                    if (cubit.keyForm.currentState!.validate()) {
+                                    if (cubit.keyForm.currentState!
+                                        .validate()) {
                                       cubit.keyForm.currentState!.save();
                                       cubit.addDepartment(
                                           context: context,

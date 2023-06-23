@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
           builder: (context, state) {
             return Consumer<ThemeNotifier>(
               builder: (context, ThemeNotifier theme, _) => MaterialApp(
-                title: 'Education System',
+                title: 'SCI',
                 theme: theme.getTheme(),
                 debugShowCheckedModeBanner: false,
                 home: const SplashScreen(),

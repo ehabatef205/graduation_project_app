@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/models/groups_model.dart';
 import 'package:graduation_project_app/modules/doctor/create_midterm/cubit/states.dart';
+import 'package:graduation_project_app/modules/doctor/doctor_midterm/doctor_midterm.dart';
 import 'package:graduation_project_app/shared/network/dio_helper.dart';
 
 class CreateMidTermCubit extends Cubit<CreateMidTermStates> {
@@ -12,21 +13,27 @@ class CreateMidTermCubit extends Cubit<CreateMidTermStates> {
 
   bool isLoading = false;
 
-  List<String> midterms = [];
+  List<dynamic> midterms = [];
 
-  void changeMidtermAllStudents(int students) {
-    for (int i = 0; i < students; i++) {
-      midterms.add("0");
+  void changeMidtermAllStudents(List<dynamic> students) {
+    for (int i = 0; i < students.length; i++) {
+      midterms.add({
+        "student_id": students[i],
+        "grad": "0"
+      });
       emit(ChangeMidtermAllStudentsState());
     }
   }
 
   void changeMidterm(int index, String grad) {
-    midterms[index] = grad;
+    midterms[index] = {
+      "student_id": midterms[index]["student_id"],
+      "grad": grad
+    };
     emit(ChangeMidtermState());
   }
 
-  Future<void> addMidterm({required Respone group}) async {
+  Future<void> addMidterm({required Respone group, required BuildContext context}) async {
     try {
       print(midterms);
       isLoading = true;
@@ -39,6 +46,10 @@ class CreateMidTermCubit extends Cubit<CreateMidTermStates> {
           'midterms': midterms
         },
       ).then((value) {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => DoctorMidTermScreen(group: group)));
         emit(CreateMidtermSuccessState());
       }).catchError((error) {
         print(error.toString());

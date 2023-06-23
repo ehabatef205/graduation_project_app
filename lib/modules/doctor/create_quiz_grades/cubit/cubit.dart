@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
+import 'package:excel/excel.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/models/groups_model.dart';
@@ -26,7 +30,10 @@ class CreateQuizGradesCubit extends Cubit<CreateQuizGradesStates> {
   }
 
   void changeQuiz(int index, String grad) {
-    quizzes[index] = grad;
+    quizzes[index] = {
+      "student_id": quizzes[index]["student_id"],
+      "grad": grad
+    };
     emit(ChangeQuizState());
   }
 
@@ -54,5 +61,27 @@ class CreateQuizGradesCubit extends Cubit<CreateQuizGradesStates> {
         emit(CreateQuizErrorState());
       });
     } catch (e) {}
+  }
+
+  List<String> rowdetail = [];
+
+  void chooseFile() async{
+    FilePickerResult? result = await FilePicker.platform.pickFiles(type: FileType.custom,
+      allowedExtensions: ['xlsx'],);
+
+    if (result != null) {
+      File file = File(result.files.single.path!);
+      print(file.path);
+      var bytes = file.readAsBytesSync();
+      var excel = Excel.decodeBytes(bytes);
+
+      for (var table in excel.tables.keys) {
+        for (var row in excel.tables[table]!.rows) {
+          rowdetail.add(row[0]!.value);
+        }
+      }
+    } else {
+      // User canceled the picker
+    }
   }
 }

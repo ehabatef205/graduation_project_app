@@ -6,6 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:graduation_project_app/models/course_model.dart';
+import 'package:graduation_project_app/models/department_model.dart';
+import 'package:graduation_project_app/modules/admin/courses/courses_screen.dart';
 import 'package:graduation_project_app/modules/admin/update_course/cubit/states.dart';
 import 'package:graduation_project_app/shared/network/dio_helper.dart';
 import 'package:image_picker/image_picker.dart';
@@ -88,6 +90,25 @@ class UpdateCourseCubit extends Cubit<UpdateCourseStates> {
         print(error.toString());
         isLoading = false;
         emit(UpdateCourseErrorState());
+      });
+    } catch (e) {}
+  }
+
+  Future<void> deleteCourse({required String courseId, required BuildContext context, required Respone department}) async {
+    try {
+      emit(DeleteCourseLoadingState());
+      DioHelper.deleteData(
+        url: "/api/course/delete_course",
+        data: {
+          'course_id': courseId,
+        },
+      ).then((value) async{
+        print("Hello ${value.data}");
+        Navigator.push(context, MaterialPageRoute(builder: (context) => CoursesScreen(department: department)));
+        emit(DeleteCourseSuccessState());
+      }).catchError((error) {
+        print(error.toString());
+        emit(DeleteCourseErrorState());
       });
     } catch (e) {}
   }

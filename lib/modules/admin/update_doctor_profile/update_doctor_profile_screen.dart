@@ -9,14 +9,16 @@ import 'package:graduation_project_app/shared/constant.dart';
 
 class UpdateDoctorProfileScreen extends StatelessWidget {
   final Data doctorDate;
-  const UpdateDoctorProfileScreen({Key? key, required this.doctorDate}) : super(key: key);
+
+  const UpdateDoctorProfileScreen({Key? key, required this.doctorDate})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => UpdateDoctorProfileCubit()..completeText(doctorDate: doctorDate),
-      child:
-          BlocConsumer<UpdateDoctorProfileCubit, UpdateDoctorProfileStates>(
+      create: (context) =>
+          UpdateDoctorProfileCubit()..completeText(doctorDate: doctorDate),
+      child: BlocConsumer<UpdateDoctorProfileCubit, UpdateDoctorProfileStates>(
         listener: (context, state) {},
         builder: (context, state) {
           UpdateDoctorProfileCubit cubit =
@@ -33,7 +35,9 @@ class UpdateDoctorProfileScreen extends StatelessWidget {
               actions: [
                 IconButton(
                   onPressed: () {
-
+                    cubit.deleteManagement(
+                        managementId: doctorDate.managementId!,
+                        context: context);
                   },
                   icon: Icon(
                     Icons.delete_outline,
@@ -193,7 +197,8 @@ class UpdateDoctorProfileScreen extends StatelessWidget {
                                           .validate()) {
                                         cubit.formKey.currentState!.save();
                                         cubit.updateProfileDoctor(
-                                            context: context, doctorDate: doctorDate);
+                                            context: context,
+                                            doctorDate: doctorDate);
                                       }
                                     },
                                     color: Colors.green[600],

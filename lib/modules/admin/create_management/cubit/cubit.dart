@@ -40,7 +40,7 @@ class CreateManagementCubit extends Cubit<CreateManagementStates> {
       isLoading = true;
       emit(CreateManagementState());
       DioHelper.postData(
-        url: "/api/management/create_student",
+        url: "/api/management/create_management",
         data: {
           'management_id': managementIdController.text,
           'name': managementNameController.text,
@@ -72,6 +72,10 @@ class CreateManagementCubit extends Cubit<CreateManagementStates> {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => ViewDoctorsScreen()));
           }
+        }
+
+        if(value.data["message"] == "Error"){
+          isLoading = false;
         }
 
         emit(CreateManagementSuccessState());

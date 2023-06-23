@@ -16,7 +16,8 @@ class CreateQuizGradesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => CreateQuizGradesCubit()..changeQuizAllStudents(group.students!),
+      create: (BuildContext context) =>
+          CreateQuizGradesCubit()..changeQuizAllStudents(group.students!),
       child: BlocConsumer<CreateQuizGradesCubit, CreateQuizGradesStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -32,6 +33,17 @@ class CreateQuizGradesScreen extends StatelessWidget {
                 ),
               ),
               centerTitle: true,
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    cubit.chooseFile();
+                  },
+                  icon: Icon(
+                    Icons.add,
+                    color: Theme.of(context).iconTheme.color,
+                  ),
+                ),
+              ],
             ),
             body: Padding(
               padding: const EdgeInsets.all(10.0),
@@ -47,8 +59,10 @@ class CreateQuizGradesScreen extends StatelessWidget {
                           title: Text(
                             group.students![index],
                             style: TextStyle(
-                                color:
-                                    Theme.of(context).textTheme.bodyText1!.color),
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1!
+                                    .color),
                           ),
                           trailing: SizedBox(
                             width: 50,

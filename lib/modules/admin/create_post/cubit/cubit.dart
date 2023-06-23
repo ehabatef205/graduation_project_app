@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:graduation_project_app/layout/app_layout.dart';
 import 'package:graduation_project_app/modules/admin/create_post/cubit/states.dart';
+import 'package:graduation_project_app/modules/admin/home_admin/cubit/cubit.dart';
 import 'package:graduation_project_app/shared/constant.dart';
 import 'package:graduation_project_app/shared/network/dio_helper.dart';
 import 'package:image_picker/image_picker.dart';
@@ -62,11 +63,13 @@ class CreatePostCubit extends Cubit<CreatePostStates> {
           textColor: Colors.white,
           fontSize: 16,
         );
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => AppScreen(
-                    userType: management!.userType!, indexOfScreen: 0)));
+        HomeAdminCubit.get(context).postOfAdmin().whenComplete(() async{
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => AppScreen(
+                      userType: management!.userType!, indexOfScreen: 0)));
+        });
         emit(CreatePostSuccessState());
       }).catchError((error) {
         print(error.toString());

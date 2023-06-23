@@ -9,35 +9,48 @@ import 'package:graduation_project_app/shared/constant.dart';
 
 class UpdateStudentProfileScreen extends StatelessWidget {
   final Data studentDate;
-  const UpdateStudentProfileScreen({Key? key, required this.studentDate}) : super(key: key);
+
+  const UpdateStudentProfileScreen({Key? key, required this.studentDate})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => UpdateStudentProfileCubit()..completeText(studentDate: studentDate),
+      create: (context) =>
+      UpdateStudentProfileCubit()
+        ..completeText(studentDate: studentDate),
       child:
-          BlocConsumer<UpdateStudentProfileCubit, UpdateStudentProfileStates>(
+      BlocConsumer<UpdateStudentProfileCubit, UpdateStudentProfileStates>(
         listener: (context, state) {},
         builder: (context, state) {
           UpdateStudentProfileCubit cubit =
-              UpdateStudentProfileCubit.get(context);
+          UpdateStudentProfileCubit.get(context);
           return Scaffold(
             appBar: AppBar(
               title: Text(
                 "Update Profile",
                 style: TextStyle(
-                    color: Theme.of(context).textTheme.bodyText1!.color,
+                    color: Theme
+                        .of(context)
+                        .textTheme
+                        .bodyText1!
+                        .color,
                     fontSize: 25.0),
               ),
               centerTitle: true,
               actions: [
                 IconButton(
                   onPressed: () {
-
+                    cubit.deleteStudent(
+                        studentId: studentDate.studentId!, context: context);
                   },
                   icon: Icon(
                     Icons.delete_outline,
-                    color: Theme.of(context).textTheme.bodyText1!.color,
+                    color: Theme
+                        .of(context)
+                        .textTheme
+                        .bodyText1!
+                        .color,
                   ),
                 ),
               ],
@@ -76,7 +89,11 @@ class UpdateStudentProfileScreen extends StatelessWidget {
                               fontSize: 25.0,
                               fontWeight: FontWeight.bold,
                               color:
-                                  Theme.of(context).textTheme.bodyText1!.color,
+                              Theme
+                                  .of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .color,
                             ),
                           ),
                           const SizedBox(
@@ -87,7 +104,8 @@ class UpdateStudentProfileScreen extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 25.0,
                                 fontWeight: FontWeight.bold,
-                                color: Theme.of(context)
+                                color: Theme
+                                    .of(context)
                                     .textTheme
                                     .bodyText1!
                                     .color),
@@ -101,7 +119,11 @@ class UpdateStudentProfileScreen extends StatelessWidget {
                               fontSize: 25.0,
                               fontWeight: FontWeight.bold,
                               color:
-                                  Theme.of(context).textTheme.bodyText1!.color,
+                              Theme
+                                  .of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .color,
                             ),
                           ),
                           const SizedBox(
@@ -115,7 +137,11 @@ class UpdateStudentProfileScreen extends StatelessWidget {
                             prefixIcon: Icon(
                               Icons.email_outlined,
                               color:
-                                  Theme.of(context).textTheme.bodyText1!.color,
+                              Theme
+                                  .of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .color,
                             ),
                             validate: (value) {
                               if (value!.isEmpty) {
@@ -135,7 +161,11 @@ class UpdateStudentProfileScreen extends StatelessWidget {
                             prefixIcon: Icon(
                               Icons.location_on_outlined,
                               color:
-                                  Theme.of(context).textTheme.bodyText1!.color,
+                              Theme
+                                  .of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .color,
                             ),
                             validate: (value) {
                               if (value!.isEmpty) {
@@ -155,7 +185,11 @@ class UpdateStudentProfileScreen extends StatelessWidget {
                             prefixIcon: Icon(
                               Icons.phone,
                               color:
-                                  Theme.of(context).textTheme.bodyText1!.color,
+                              Theme
+                                  .of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .color,
                             ),
                             validate: (value) {
                               if (value!.isEmpty) {
@@ -175,7 +209,11 @@ class UpdateStudentProfileScreen extends StatelessWidget {
                             prefixIcon: Icon(
                               Icons.phone,
                               color:
-                                  Theme.of(context).textTheme.bodyText1!.color,
+                              Theme
+                                  .of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .color,
                             ),
                             validate: (value) {
                               if (value!.isEmpty) {
@@ -189,37 +227,38 @@ class UpdateStudentProfileScreen extends StatelessWidget {
                           ),
                           cubit.isLoading
                               ? Center(
-                                  child: CircularProgressIndicator(
-                                    color: colorButton,
-                                  ),
-                                )
+                            child: CircularProgressIndicator(
+                              color: colorButton,
+                            ),
+                          )
                               : Container(
-                                  width: double.infinity,
-                                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(25.0),
-                                  ),
-                                  child: MaterialButton(
-                                    onPressed: () {
-                                      if (cubit.formKey.currentState!
-                                          .validate()) {
-                                        cubit.formKey.currentState!.save();
-                                        cubit.updateProfileStudent(
-                                            context: context, studentDate: studentDate);
-                                      }
-                                    },
-                                    color: Colors.green[600],
-                                    height: 50.0,
-                                    child: const Text(
-                                      'Update',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20.0,
-                                      ),
-                                    ),
-                                  ),
+                            width: double.infinity,
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25.0),
+                            ),
+                            child: MaterialButton(
+                              onPressed: () {
+                                if (cubit.formKey.currentState!
+                                    .validate()) {
+                                  cubit.formKey.currentState!.save();
+                                  cubit.updateProfileStudent(
+                                      context: context,
+                                      studentDate: studentDate);
+                                }
+                              },
+                              color: Colors.green[600],
+                              height: 50.0,
+                              child: const Text(
+                                'Update',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20.0,
                                 ),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),

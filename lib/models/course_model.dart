@@ -30,6 +30,7 @@ class Course {
   String? courseDescription;
   String? courseCredit;
   String? courseLevel;
+  List<dynamic>? finalGrads;
   int? iV;
 
   Course(
@@ -41,6 +42,7 @@ class Course {
         this.courseCredit,
         this.courseLevel,
         this.image,
+        this.finalGrads,
         this.iV});
 
   Course.fromJson(Map<String, dynamic> json) {
@@ -52,6 +54,7 @@ class Course {
     courseLevel = json['course_level'];
     image = json['image'];
     department = json['department'];
+    finalGrads = json['final_grads'].cast<List<dynamic>>();
     iV = json['__v'];
   }
 

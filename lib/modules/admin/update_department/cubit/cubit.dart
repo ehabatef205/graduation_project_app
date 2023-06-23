@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:graduation_project_app/layout/app_layout.dart';
 import 'package:graduation_project_app/models/department_model.dart';
 import 'package:graduation_project_app/modules/admin/update_department/cubit/states.dart';
+import 'package:graduation_project_app/shared/constant.dart';
 import 'package:graduation_project_app/shared/network/dio_helper.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -44,7 +46,8 @@ class UpdateDepartmentCubit extends Cubit<UpdateDepartmentStates> {
     departmentDesController.text = respone.departmentDescription!;
   }
 
-  Future<void> updateDepartment({required BuildContext context, required String departmentId}) async {
+  Future<void> updateDepartment(
+      {required BuildContext context, required String departmentId}) async {
     try {
       isLoading = true;
       emit(UpdateDepartmentState());
@@ -72,6 +75,30 @@ class UpdateDepartmentCubit extends Cubit<UpdateDepartmentStates> {
         print(error.toString());
         isLoading = false;
         emit(UpdateDepartmentErrorState());
+      });
+    } catch (e) {}
+  }
+
+  Future<void> deleteDepartment(
+      {required String departmentId, required BuildContext context}) async {
+    try {
+      emit(DeleteDepartmentLoadingState());
+      DioHelper.deleteData(
+        url: "/api/department/delete_department",
+        data: {
+          'department_id': departmentId,
+        },
+      ).then((value) async {
+        print("Hello ${value.data}");
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => AppScreen(
+                    userType: management!.userType!, indexOfScreen: 1)));
+        emit(DeleteDepartmentSuccessState());
+      }).catchError((error) {
+        print(error.toString());
+        emit(DeleteDepartmentErrorState());
       });
     } catch (e) {}
   }

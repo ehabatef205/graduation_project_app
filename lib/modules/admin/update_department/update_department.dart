@@ -32,6 +32,22 @@ class UpdateDepartmentScreen extends StatelessWidget {
                     color: Theme.of(context).textTheme.bodyText1!.color,
                   ),
                 ),
+                actions: [
+                  IconButton(
+                    onPressed: () {
+                      cubit.deleteDepartment(
+                          departmentId: respone.departmentId!, context: context);
+                    },
+                    icon: Icon(
+                      Icons.delete_outline,
+                      color: Theme
+                          .of(context)
+                          .textTheme
+                          .bodyText1!
+                          .color,
+                    ),
+                  ),
+                ],
               ),
               body: Padding(
                 padding: const EdgeInsets.all(10),

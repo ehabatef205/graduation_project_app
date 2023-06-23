@@ -61,6 +61,7 @@ class HomeDoctorCubit extends Cubit<HomeDoctorStates> {
   }
 
   Future<void> getCourseOfGroup(List<Respone> groups2) async{
+    print(groups2.length);
     for (int i = 0; i < groups2.length; i++) {
       DioHelper.postData(
         url: "/api/course/view_course_by_id",
@@ -68,6 +69,7 @@ class HomeDoctorCubit extends Cubit<HomeDoctorStates> {
           'course_id': groups2[i].courseId,
         },
       ).then((value) async {
+        print(value.data["respone"]);
         courses.add(Course.fromJson(value.data["respone"]));
         emit(CourseSuccessState());
       }).catchError((error) {

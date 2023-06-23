@@ -14,7 +14,7 @@ class CreateMidTermScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => CreateMidTermCubit()..changeMidtermAllStudents(group.students!.length),
+      create: (BuildContext context) => CreateMidTermCubit()..changeMidtermAllStudents(group.students!),
       child: BlocConsumer<CreateMidTermCubit, CreateMidTermStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -96,7 +96,7 @@ class CreateMidTermScreen extends StatelessWidget {
                     ),
                     child: MaterialButton(
                       onPressed: () {
-                        cubit.addMidterm(group: group);
+                        cubit.addMidterm(group: group, context: context);
                       },
                       color: Colors.green[600],
                       height: 50.0,

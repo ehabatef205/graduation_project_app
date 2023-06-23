@@ -13,3 +13,9 @@ class UpdateCourseState extends UpdateCourseStates {}
 class UpdateCourseSuccessState extends UpdateCourseStates {}
 
 class UpdateCourseErrorState extends UpdateCourseStates {}
+
+class DeleteCourseLoadingState extends UpdateCourseStates {}
+
+class DeleteCourseSuccessState extends UpdateCourseStates {}
+
+class DeleteCourseErrorState extends UpdateCourseStates {}

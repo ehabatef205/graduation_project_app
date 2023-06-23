@@ -63,10 +63,9 @@ class RegisterCourseCubit extends Cubit<RegisterCourseStates> {
           url: "/api/course/view_course_by_department",
           data: {"department": student!.department}).then((value) {
         courses = CourseModel.fromJson(value.data);
+        print(value.data);
         for (int i = 0; i < courses!.course!.length; i++) {
-          if (courses!.course![i].courseLevel == student!.level) {
             coursesId.add(courses!.course![i].courseId!);
-          }
         }
         isLoading = false;
         emit(CourseSuccessState());

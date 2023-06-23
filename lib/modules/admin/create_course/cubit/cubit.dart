@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:graduation_project_app/models/department_model.dart';
+import 'package:graduation_project_app/modules/admin/courses/courses_screen.dart';
 import 'package:graduation_project_app/modules/admin/create_course/cubit/states.dart';
 import 'package:graduation_project_app/shared/network/dio_helper.dart';
 import 'package:image_picker/image_picker.dart';
@@ -47,7 +49,7 @@ class CreateCourseCubit extends Cubit<CreateCourseStates> {
     emit(ChangeImageState());
   }
 
-  Future<void> addDepartment({required BuildContext context, required String department}) async {
+  Future<void> addDepartment({required BuildContext context, required Respone department}) async {
     try {
       isLoading = true;
       emit(CreateCourseState());
@@ -60,7 +62,7 @@ class CreateCourseCubit extends Cubit<CreateCourseStates> {
           "course_description": courseDesController.text,
           "course_credit": courseCreditController.text,
           "course_level": courseLevelController.text,
-          "department": department,
+          "department": department.departmentId,
         },
       ).then((value) {
         Fluttertoast.showToast(
@@ -72,8 +74,8 @@ class CreateCourseCubit extends Cubit<CreateCourseStates> {
           textColor: Colors.white,
           fontSize: 16,
         );
+        Navigator.push(context, MaterialPageRoute(builder: (context) => CoursesScreen(department: department)));
         emit(CreateCourseSuccessState());
-        Navigator.pop(context);
       }).catchError((error) {
         print(error.toString());
         isLoading = false;

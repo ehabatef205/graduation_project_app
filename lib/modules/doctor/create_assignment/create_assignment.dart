@@ -17,7 +17,7 @@ class CreateAssignmentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (BuildContext context) => CreateAssignmentCubit()
-        ..changeAssignmentAllStudents(group.students!.length),
+        ..changeAssignmentAllStudents(group.students!),
       child: BlocConsumer<CreateAssignmentCubit, CreateAssignmentStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -105,7 +105,7 @@ class CreateAssignmentScreen extends StatelessWidget {
                           ),
                           child: MaterialButton(
                             onPressed: () {
-                              cubit.addAssignment(group: group);
+                              cubit.addAssignment(group: group, context: context);
                             },
                             color: Colors.green[600],
                             height: 50.0,

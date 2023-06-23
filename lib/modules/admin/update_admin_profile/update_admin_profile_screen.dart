@@ -33,7 +33,7 @@ class UpdateAdminProfileScreen extends StatelessWidget {
               actions: [
                 IconButton(
                   onPressed: () {
-
+                    cubit.deleteManagement(managementId: adminDate.managementId!, context: context);
                   },
                   icon: Icon(
                     Icons.delete_outline,

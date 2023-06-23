@@ -81,25 +81,28 @@ class StudentExamsScreen extends StatelessWidget {
                                     ),
                                     trailing: SizedBox(
                                       width: 20,
-                                      child: ListView.builder(
-                                          itemCount: cubit
-                                              .group!.quizzes![index].length,
-                                          itemBuilder: (context, index2) {
-                                            return cubit.group!.quizzes![index]
-                                                            [index2]
-                                                        ["student_id"] ==
-                                                    student!.studentId
-                                                ? Text(
-                                                    cubit.group!.quizzes![index]
-                                                        [index2]["grad"],
-                                                    style: TextStyle(
-                                                        color: Theme.of(context)
-                                                            .textTheme
-                                                            .bodyText1!
-                                                            .color),
-                                                  )
-                                                : SizedBox();
-                                          }),
+                                      child: Center(
+                                        child: ListView.builder(
+                                          shrinkWrap: true,
+                                            itemCount: cubit
+                                                .group!.quizzes![index].length,
+                                            itemBuilder: (context, index2) {
+                                              return cubit.group!.quizzes![index]
+                                                              [index2]
+                                                          ["student_id"] ==
+                                                      student!.studentId
+                                                  ? Text(
+                                                      cubit.group!.quizzes![index]
+                                                          [index2]["grad"],
+                                                      style: TextStyle(
+                                                          color: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyText1!
+                                                              .color),
+                                                    )
+                                                  : SizedBox();
+                                            }),
+                                      ),
                                     ),
                                   );
                                 })
@@ -148,26 +151,29 @@ class StudentExamsScreen extends StatelessWidget {
                                     ),
                                     trailing: SizedBox(
                                       width: 20,
-                                      child: ListView.builder(
-                                          itemCount: cubit.group!
-                                              .assignments![index].length,
-                                          itemBuilder: (context, index2) {
-                                            return cubit.group!.assignments![
-                                                            index][index2]
-                                                        ["student_id"] ==
-                                                    student!.studentId
-                                                ? Text(
-                                                    cubit.group!
-                                                            .assignments![index]
-                                                        [index2]["grad"],
-                                                    style: TextStyle(
-                                                        color: Theme.of(context)
-                                                            .textTheme
-                                                            .bodyText1!
-                                                            .color),
-                                                  )
-                                                : SizedBox();
-                                          }),
+                                      child: Center(
+                                        child: ListView.builder(
+                                            shrinkWrap: true,
+                                            itemCount: cubit.group!
+                                                .assignments![index].length,
+                                            itemBuilder: (context, index2) {
+                                              return cubit.group!.assignments![
+                                                              index][index2]
+                                                          ["student_id"] ==
+                                                      student!.studentId
+                                                  ? Text(
+                                                      cubit.group!
+                                                              .assignments![index]
+                                                          [index2]["grad"],
+                                                      style: TextStyle(
+                                                          color: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyText1!
+                                                              .color),
+                                                    )
+                                                  : SizedBox();
+                                            }),
+                                      ),
                                     ),
                                   );
                                 })
@@ -216,26 +222,29 @@ class StudentExamsScreen extends StatelessWidget {
                                     ),
                                     trailing: SizedBox(
                                       width: 20,
-                                      child: ListView.builder(
-                                          itemCount: cubit
-                                              .group!.midterms![index].length,
-                                          itemBuilder: (context, index2) {
-                                            return cubit.group!.midterms![index]
-                                                            [index2]
-                                                        ["student_id"] ==
-                                                    student!.studentId
-                                                ? Text(
-                                                    cubit.group!
-                                                            .midterms![index]
-                                                        [index2]["grad"],
-                                                    style: TextStyle(
-                                                        color: Theme.of(context)
-                                                            .textTheme
-                                                            .bodyText1!
-                                                            .color),
-                                                  )
-                                                : SizedBox();
-                                          }),
+                                      child: Center(
+                                        child: ListView.builder(
+                                            shrinkWrap: true,
+                                            itemCount: cubit
+                                                .group!.midterms![index].length,
+                                            itemBuilder: (context, index2) {
+                                              return cubit.group!.midterms![index]
+                                                              [index2]
+                                                          ["student_id"] ==
+                                                      student!.studentId
+                                                  ? Text(
+                                                      cubit.group!
+                                                              .midterms![index]
+                                                          [index2]["grad"],
+                                                      style: TextStyle(
+                                                          color: Theme.of(context)
+                                                              .textTheme
+                                                              .bodyText1!
+                                                              .color),
+                                                    )
+                                                  : SizedBox();
+                                            }),
+                                      ),
                                     ),
                                   );
                                 })

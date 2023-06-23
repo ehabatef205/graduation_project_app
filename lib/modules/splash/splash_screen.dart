@@ -37,10 +37,11 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return const Scaffold(
+    return Scaffold(
       body: Center(
         child: Image(
           image: AssetImage("assets/logo.png"),
+          width: size.width * 0.6,
         ),
       ),
     );

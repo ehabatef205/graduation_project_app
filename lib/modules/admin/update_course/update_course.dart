@@ -3,15 +3,17 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/models/course_model.dart';
+import 'package:graduation_project_app/models/department_model.dart';
 import 'package:graduation_project_app/modules/admin/update_course/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/admin/update_course/cubit/states.dart';
 import 'package:graduation_project_app/shared/color.dart';
 import 'package:graduation_project_app/shared/components.dart';
 
 class UpdateCourseScreen extends StatelessWidget {
+  final Respone department;
   final Course course;
 
-  const UpdateCourseScreen({Key? key, required this.course})
+  const UpdateCourseScreen({Key? key, required this.course, required this.department})
       : super(key: key);
 
   @override
@@ -31,6 +33,22 @@ class UpdateCourseScreen extends StatelessWidget {
                     color: Theme.of(context).textTheme.bodyText1!.color,
                   ),
                 ),
+                actions: [
+                  IconButton(
+                    onPressed: () {
+                      cubit.deleteCourse(
+                          courseId: course.courseId!, context: context, department: department);
+                    },
+                    icon: Icon(
+                      Icons.delete_outline,
+                      color: Theme
+                          .of(context)
+                          .textTheme
+                          .bodyText1!
+                          .color,
+                    ),
+                  ),
+                ],
               ),
               body: Padding(
                 padding: const EdgeInsets.all(10),

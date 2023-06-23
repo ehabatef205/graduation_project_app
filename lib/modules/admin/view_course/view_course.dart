@@ -68,7 +68,7 @@ class ViewCourseScreen extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
-                              UpdateCourseScreen(course: course),
+                              UpdateCourseScreen(course: course, department: department),
                         ),
                       );
                     },

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:graduation_project_app/layout/app_layout.dart';
 import 'package:graduation_project_app/layout/cubit/cubit.dart';
+import 'package:graduation_project_app/modules/logIn/logIn_screen.dart';
 import 'package:graduation_project_app/shared/color.dart';
 import 'package:graduation_project_app/shared/components.dart';
 import 'package:graduation_project_app/shared/constant.dart';
@@ -47,7 +49,15 @@ class _PasswordScreenState extends State<PasswordScreen> {
         });
       });
     } else {
-      print("Hello");
+      Fluttertoast.showToast(
+        msg: "Password is incorrect",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black.withOpacity(0.5),
+        textColor: Colors.white,
+        fontSize: 16,
+      );
       setState(() {
         isLoading = false;
       });
@@ -93,7 +103,8 @@ class _PasswordScreenState extends State<PasswordScreen> {
                             labelText: 'Password',
                             prefixIcon: Icon(
                               Icons.account_box_outlined,
-                              color: Theme.of(context).textTheme.bodyText1!.color,
+                              color:
+                                  Theme.of(context).textTheme.bodyText1!.color,
                             ),
                             validate: (value) {
                               if (value!.isEmpty) {
@@ -139,6 +150,28 @@ class _PasswordScreenState extends State<PasswordScreen> {
                           const SizedBox(
                             height: 30.0,
                           ),
+                          TextButton(
+                              onPressed: () async {
+                                final SharedPreferences sharedPreferences =
+                                    await SharedPreferences.getInstance();
+
+                                await sharedPreferences.remove("user_type");
+                                await sharedPreferences.remove("password");
+
+                                await sharedPreferences
+                                    .remove("token")
+                                    .whenComplete(() async {
+                                  AppCubit.get(context).changeIndex(0);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => LoginScreen()));
+                                });
+                              },
+                              child: Text(
+                                "Forgot password, Login",
+                                style: TextStyle(color: colorButton),
+                              )),
                         ],
                       ),
                     ),

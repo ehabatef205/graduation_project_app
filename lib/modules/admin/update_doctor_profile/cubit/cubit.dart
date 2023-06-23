@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:graduation_project_app/models/managements_model.dart';
 import 'package:graduation_project_app/modules/admin/update_doctor_profile/cubit/states.dart';
+import 'package:graduation_project_app/modules/admin/view_doctors/view_doctors.dart';
 import 'package:graduation_project_app/shared/constant.dart';
 import 'package:graduation_project_app/shared/network/dio_helper.dart';
 import 'package:image_picker/image_picker.dart';
@@ -56,7 +57,7 @@ class UpdateDoctorProfileCubit extends Cubit<UpdateDoctorProfileStates> {
         token: loginManagementModel!.token,
         url: "/api/management/update_student",
         data: {
-          'student_id': doctorDate.managementId,
+          'management_id': doctorDate.managementId,
           'email': emailController.text,
           'phone': phoneController.text,
           'mobile': mobileController.text,
@@ -83,6 +84,25 @@ class UpdateDoctorProfileCubit extends Cubit<UpdateDoctorProfileStates> {
         print(error.toString());
         isLoading = false;
         emit(UpdateErrorState());
+      });
+    } catch (e) {}
+  }
+
+  Future<void> deleteManagement({required String managementId, required BuildContext context}) async {
+    try {
+      emit(DeleteDoctorLoadingState());
+      DioHelper.deleteData(
+        url: "/api/management/delete_management",
+        data: {
+          'management_id': managementId,
+        },
+      ).then((value) async{
+        print("Hello ${value.data}");
+        Navigator.push(context, MaterialPageRoute(builder: (context) => ViewDoctorsScreen()));
+        emit(DeleteDoctorSuccessState());
+      }).catchError((error) {
+        print(error.toString());
+        emit(DeleteDoctorErrorState());
       });
     } catch (e) {}
   }

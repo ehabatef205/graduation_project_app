@@ -65,8 +65,9 @@ class CreateStudentCubit extends Cubit<CreateStudentStates> {
         if (value.data["message"] == "Student added successfully") {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => ViewStudentsScreen()));
+        }else{
+          isLoading = false;
         }
-
         emit(CreateStudentSuccessState());
       }).catchError((error) {
         print(error.toString());

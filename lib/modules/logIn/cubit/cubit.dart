@@ -27,6 +27,10 @@ class LoginCubit extends Cubit<LoginStates> {
   void userLogin({required BuildContext context}) async {
     try {
       isLoading = true;
+      student = null;
+      loginStudentModel = null;
+      management = null;
+      loginManagementModel = null;
       emit(LoginLoadingState());
       DioHelper.postData(
         url: "/api/login",
@@ -55,11 +59,11 @@ class LoginCubit extends Cubit<LoginStates> {
             final SharedPreferences sharedPreferences =
                 await SharedPreferences.getInstance();
 
-            await sharedPreferences
-                .setString("user_type", value.data["user_type"]);
+            await sharedPreferences.setString(
+                "user_type", value.data["user_type"]);
 
-            await sharedPreferences
-                .setString("password", passwordController.text);
+            await sharedPreferences.setString(
+                "password", passwordController.text);
 
             await sharedPreferences
                 .setString("token", token!)
@@ -79,11 +83,11 @@ class LoginCubit extends Cubit<LoginStates> {
             final SharedPreferences sharedPreferences =
                 await SharedPreferences.getInstance();
 
-            await sharedPreferences
-                .setString("password", passwordController.text);
+            await sharedPreferences.setString(
+                "password", passwordController.text);
 
-            await sharedPreferences
-                .setString("user_type", value.data["user_type"]);
+            await sharedPreferences.setString(
+                "user_type", value.data["user_type"]);
 
             await sharedPreferences
                 .setString("token", token!)

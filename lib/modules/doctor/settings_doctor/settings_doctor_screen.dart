@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/layout/cubit/cubit.dart';
+import 'package:graduation_project_app/modules/doctor/change_password_doctor/change_password_doctor_screen.dart';
 import 'package:graduation_project_app/modules/doctor/view_profile_doctor/view_profile_doctor_screen.dart';
 import 'package:graduation_project_app/modules/doctor/settings_doctor/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/doctor/settings_doctor/cubit/states.dart';
@@ -69,6 +70,25 @@ class SettingsDoctorScreen extends StatelessWidget {
                       Icons.dark_mode,
                       color: Theme.of(context).iconTheme.color,
                     ),
+                  ),
+                  ListTile(
+                    leading: Icon(
+                      Icons.password,
+                      color: Theme.of(context).iconTheme.color,
+                    ),
+                    title: Text(
+                      'Change password',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Theme.of(context).textTheme.bodyText1!.color,
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ChangePasswordDoctorScreen()));
+                    },
                   ),
                   ListTile(
                     leading: Icon(

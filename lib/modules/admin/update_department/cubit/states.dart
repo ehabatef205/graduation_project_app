@@ -11,3 +11,9 @@ class UpdateDepartmentState extends UpdateDepartmentStates {}
 class UpdateDepartmentSuccessState extends UpdateDepartmentStates {}
 
 class UpdateDepartmentErrorState extends UpdateDepartmentStates {}
+
+class DeleteDepartmentLoadingState extends UpdateDepartmentStates {}
+
+class DeleteDepartmentSuccessState extends UpdateDepartmentStates {}
+
+class DeleteDepartmentErrorState extends UpdateDepartmentStates {}

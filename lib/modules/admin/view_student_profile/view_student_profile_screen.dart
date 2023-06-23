@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project_app/models/students_model.dart';
 import 'package:graduation_project_app/modules/admin/update_student_profile/update_student_profile_screen.dart';
+import 'package:graduation_project_app/modules/student/change_password/change_password_screen.dart';
 import 'package:graduation_project_app/modules/student/update_profile_student/update_profile_screen.dart';
 import 'package:graduation_project_app/modules/admin/view_student_profile/cubit/cubit.dart';
 import 'package:graduation_project_app/modules/admin/view_student_profile/cubit/states.dart';
@@ -36,8 +37,8 @@ class ViewStudentProfileScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            UpdateStudentProfileScreen(studentDate: studentDate),
+                        builder: (context) => UpdateStudentProfileScreen(
+                            studentDate: studentDate),
                       ),
                     );
                   },
@@ -98,15 +99,6 @@ class ViewStudentProfileScreen extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-                          Text(
-                            'GPA : 1.5',
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
-                              color:
-                                  Theme.of(context).textTheme.bodyText1!.color,
-                            ),
-                          ),
                           const SizedBox(
                             height: 10,
                           ),
@@ -155,8 +147,40 @@ class ViewStudentProfileScreen extends StatelessWidget {
                                   Theme.of(context).textTheme.bodyText1!.color,
                             ),
                           ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            width: double.infinity,
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25.0),
+                            ),
+                            child: MaterialButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            ChangePasswordScreen(
+                                              studentId:
+                                                  studentDate!.studentId!,
+                                            )));
+                              },
+                              color: Colors.green[600],
+                              height: 50.0,
+                              child: const Text(
+                                'Change Password',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20.0,
+                                ),
+                              ),
+                            ),
+                          ),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),

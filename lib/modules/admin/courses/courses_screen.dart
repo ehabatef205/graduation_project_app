@@ -67,7 +67,7 @@ class CoursesScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => CreateCourseScreen(department: department.departmentId!),
+                            builder: (context) => CreateCourseScreen(department: department),
                           ),
                         );
                       },

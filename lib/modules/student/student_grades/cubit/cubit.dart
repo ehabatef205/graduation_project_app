@@ -7,4 +7,11 @@ class StudentGradesCubit extends Cubit<StudentGradesStates>{
 
   static StudentGradesCubit get(context) => BlocProvider.of(context);
   GlobalKey<FormState> keyForm = GlobalKey<FormState>();
+
+  bool isView = false;
+
+  void changeView(){
+    isView = !isView;
+    emit(ChangeState());
+  }
 }

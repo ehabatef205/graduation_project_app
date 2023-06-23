@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:graduation_project_app/models/students_model.dart';
 import 'package:graduation_project_app/modules/admin/update_student_profile/cubit/states.dart';
+import 'package:graduation_project_app/modules/admin/view_students/view_student.dart';
 import 'package:graduation_project_app/shared/constant.dart';
 import 'package:graduation_project_app/shared/network/dio_helper.dart';
 import 'package:image_picker/image_picker.dart';
@@ -83,6 +84,25 @@ class UpdateStudentProfileCubit extends Cubit<UpdateStudentProfileStates> {
         print(error.toString());
         isLoading = false;
         emit(UpdateErrorState());
+      });
+    } catch (e) {}
+  }
+
+  Future<void> deleteStudent({required String studentId, required BuildContext context}) async {
+    try {
+      emit(DeleteStudentLoadingState());
+      DioHelper.deleteData(
+        url: "/api/management/delete_student",
+        data: {
+          'student_id': studentId,
+        },
+      ).then((value) async{
+        print("Hello ${value.data}");
+        Navigator.push(context, MaterialPageRoute(builder: (context) => ViewStudentsScreen()));
+        emit(DeleteStudentSuccessState());
+      }).catchError((error) {
+        print(error.toString());
+        emit(DeleteStudentErrorState());
       });
     } catch (e) {}
   }
